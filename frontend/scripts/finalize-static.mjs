@@ -11,7 +11,7 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
-const OUT = join(HERE, '..', '.output', 'public')
+const ROOT = join(HERE, '..')
 
 const exists = async (p) => {
   try {
@@ -21,6 +21,25 @@ const exists = async (p) => {
     return false
   }
 }
+
+/**
+ * 找出這次建置實際的產出目錄。
+ *
+ * nuxt.config 已經把 preset 釘成 static（固定 .output/public），
+ * 但這裡仍然做偵測：萬一日後 preset 改了、或某個 CI 環境又自動切換
+ * （Cloudflare Pages 會切成 dist），腳本要能跟著走，而不是直接失敗。
+ */
+async function resolveOutDir() {
+  const candidates = [join(ROOT, '.output', 'public'), join(ROOT, 'dist')]
+  for (const dir of candidates) {
+    if (await exists(join(dir, 'index.html'))) return dir
+  }
+  throw new Error(
+    '找不到靜態產出目錄（試過 .output/public 與 dist）。請確認 npm run generate 有成功產生檔案。',
+  )
+}
+
+const OUT = await resolveOutDir()
 
 /** 把 <來源>/index.html 複製成 <目標> */
 async function promote(fromDir, toFile) {
@@ -66,6 +85,6 @@ if (missing.length) {
   process.exit(1)
 }
 
-console.log('靜態產出收尾完成：')
+console.log(`靜態產出收尾完成（${OUT.replace(ROOT, '.')}）：`)
 for (const s of steps) console.log('  ' + s)
 console.log(`  完整性檢查通過（${required.length} 個關鍵檔案）`)

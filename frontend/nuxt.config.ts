@@ -71,6 +71,14 @@ export default defineNuxtConfig({
    * 因此不需要 SSR runtime；純靜態檔部署到 Cloudflare Pages 最單純也最穩。
    */
   nitro: {
+    /**
+     * 明確指定 static preset。
+     *
+     * 不指定的話，Nitro 會偵測 CI 環境自動切換：在 Cloudflare Pages 上會變成
+     * cloudflare-pages-static，產出目錄從 .output/public 變成 dist，
+     * 於是本機建置成功、雲端卻找不到檔案。釘死 preset 讓兩邊完全一致。
+     */
+    preset: 'static',
     prerender: {
       crawlLinks: true,
       routes: prerenderRoutes,

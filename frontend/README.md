@@ -235,6 +235,20 @@ npm run generate     # 產出 .output/public（含 124 個預先產生的頁面�
 | Root directory | `frontend` |
 | Node 版本 | 環境變數設 `NODE_VERSION` = `22` |
 
+> **`nitro.preset` 必須釘成 `'static'`（已設定在 `nuxt.config.ts`，不要拿掉）。**
+>
+> 不釘的話，Nitro 會偵測到 `CF_PAGES` 環境變數自動切成 `cloudflare-pages-static`，
+> **產出目錄從 `.output/public` 變成 `dist`**——本機建置成功，雲端卻找不到檔案，
+> 建置後處理腳本也會因為找不到 `404/index.html` 而失敗。
+>
+> 要在本機重現雲端環境驗證，跑：
+>
+> ```bash
+> CF_PAGES=1 npm run generate
+> ```
+>
+> 產出應該仍在 `.output/public`，且日誌會顯示 `Nitro preset: static`。
+
 > `.npmrc` 已設 `legacy-peer-deps=true`，Cloudflare 上的 `npm install` 會沿用，不必另外設定。
 
 ### 方式一：直接上傳（最快，不需要 Git）
