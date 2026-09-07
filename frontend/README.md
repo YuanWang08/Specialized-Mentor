@@ -1,0 +1,225 @@
+# 多元專項輔導導師成果網
+
+國立中央大學專項輔導導師成果網站。Nuxt 4 + Vue 3，內容全部寫在 `app/data/` 的 TypeScript 資料檔，補資料時只要改這幾個檔案，不用動版面。
+
+## 開發
+
+```bash
+npm install        # 首次
+npm run dev        # http://localhost:3000
+npm run build      # 產出 .output/（Node 伺服器版）
+npm run generate   # 產出 .output/public/（純靜態檔，可直接丟主機）
+```
+
+> `.npmrc` 已設定 `legacy-peer-deps=true`。npm 10.9.3 解析 Nuxt 4.5 的 peer dependency 時會出現
+> `Cannot read properties of null (reading 'edgesOut')`，這個設定是繞過該 bug 用的，請勿刪除。
+
+## 目錄結構
+
+```
+app/
+  data/            ← 所有網站內容都在這裡
+    site.ts          站名、副標、導覽列、頁尾聯絡資訊
+    mentorTypes.ts   五大專項導師（標語、簡介、計畫介紹全文、代表色、成果數字）
+    outstanding.ts   114 學年度傑出導師 14 位（心語、心得、照片路徑）
+    testimonials.ts  學生心得回饋
+    results.ts       年度成果數據、競賽榮譽、深耕指標
+    books.ts         優良導師繪本 7 本
+    gallery.ts       活動花絮（由 public/images/gallery 產生）
+  components/      共用元件
+  pages/           路由頁面
+  assets/css/main.css  設計代幣（顏色、字級、圓角、陰影）
+public/images/
+  mentors/         傑出導師照片
+  gallery/{dorm,career,service,club,sports}/  活動花絮
+```
+
+## 資料來源對照
+
+| 網站區塊 | 來源檔案 |
+| --- | --- |
+| 計畫介紹全文 | `專項導師成果網頁-雲端資料/首頁_計畫介紹.docx` |
+| 站名、導覽列 | `專項導師網頁內容(各組填寫).xlsx`／首頁(徐姐) |
+| 五大專項導師 | 同上／五大專項導師 |
+| 傑出導師 14 位 | 同上／114學年度傑出導師分享 |
+| 學生心得回饋 | 同上／學生心得回饋 |
+| 年度成果、深耕指標 | 同上／年度成果 |
+| 優良導師繪本 | 同上／優良導師繪本(徐姐) |
+| 傑出導師照片 | `114學年度傑出專項導師照片/` |
+| 活動花絮 | `活動花絮照片(各類導師各10張)/` |
+
+## 無障礙（重要）
+
+委託機關是學校機關，本網站須符合**無障礙網頁規範 AA 等級**。改任何東西前請先讀這一節。
+
+目前狀態：中英文各 12 個路由以 axe-core 掃描（wcag2a / wcag2aa / wcag21a / wcag21aa / best-practice）
+**全數零違規**；26 個頁面 × 320～1440px 共 9 種寬度**皆無橫向捲動**。
+
+### 已內建的設計
+
+- **三個定位點（accesskey）**：`U` 上方導覽、`C` 中央內容、`Z` 頁尾資訊，定義於 `app/app.vue`、
+  `SiteHeader.vue`、`SiteFooter.vue`。**不要刪掉**，這是無障礙標章的檢測項目。
+- **色彩代幣分兩組**（`app/assets/css/main.css`）：
+  - `--c-{類別}` 鮮豔版 → 只給**非文字**裝飾用（圓形圖示底、色條、外框），門檻 3:1
+  - `--c-{類別}-text` 加深版 → **凡是文字、連結、或承載白色文字的底色都必須用這組**，門檻 4.5:1
+
+  元件同時傳入這兩個變數：`:style="{ '--accent': t.color, '--accent-text': t.colorText }"`。
+- **篩選鈕不是 ARIA tabs**：`FilterTabs.vue` 用 `aria-pressed` 的切換按鈕加上 `aria-live` 播報筆數。
+  不要改回 `role="tablist"`——那組角色要求必須有對應的 tabpanel，否則螢幕閱讀器會唸錯。
+- **照片燈箱是真正的對話框**：`role="dialog"` + `aria-modal`、Tab 焦點鎖定在框內、Esc 關閉、
+  關閉後焦點回到原本的縮圖按鈕。
+- **重複的連結都有完整敘述**：「閱讀心得」這種按鈕都補了 `aria-label`，單獨聆聽時能分辨是哪一位導師。
+- **裝飾性圖片 `alt=""`**：外層連結或按鈕已具名、且旁邊有可見文字時，圖片一律 `alt=""`，
+  避免螢幕閱讀器把同一句話唸三次。
+- `/accessibility` 無障礙聲明頁、`/sitemap` 網站導覽頁。
+
+### 改動後怎麼驗
+
+```bash
+python scripts/check-contrast.py    # 驗證色彩代幣，不合格會 exit 1
+```
+
+跑完整的 axe 掃描（需先 `npm run dev`）：
+
+```bash
+npm install --no-save axe-core
+cp node_modules/axe-core/axe.min.js public/_axe.js
+```
+
+在瀏覽器開啟任一頁面，於主控台載入 `/_axe.js` 後執行
+`axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a','wcag2aa','wcag21a','wcag21aa','best-practice'] } })`。
+驗完記得 `rm public/_axe.js`。
+
+### 加新頁面的檢查清單
+
+- [ ] 每頁只有一個 `<h1>`，其下標題層級不跳號（h1 → h2 → h3）
+- [ ] 同一頁有多個 `<nav>` 時，每個都要有各自的 `aria-label`
+- [ ] 文字顏色走 `--ink*` 或 `--c-*-text`，不要直接寫死色碼
+- [ ] 圖片有 `alt`；純裝飾用 `alt=""`
+- [ ] 只用滑鼠 hover 才出現的東西，鍵盤也要能到達（用 `:focus-within`）
+- [ ] 不要用 `opacity` 讓文字變淡——那會讓對比不合格，改用對比達標的實色
+
+## 雙語化
+
+網站提供**中文與英文**兩個版本，由 `@nuxtjs/i18n` 驅動。
+
+| | 中文（預設） | 英文 |
+| --- | --- | --- |
+| 網址 | `/about` | `/en/about` |
+| `<html lang>` | `zh-Hant-TW` | `en` |
+
+切換鈕在頁首右上角（窄螢幕收在漢堡選單內）：平常只顯示一個地球圖示，
+點開才出現語言清單，目前語言會打勾。**切換後會停在同一個頁面**而不是跳回首頁。
+`hreflang` 與 `x-default` 由模組自動輸出。
+
+語言選單（`app/components/LangSwitch.vue`）用 `aria-haspopup="menu"` ＋ `role="menu"` 的選單模式，
+鍵盤可完整操作：方向鍵開啟並移動、`Esc` 關閉並把焦點還給按鈕、點選單外或焦點移出時自動關閉。
+
+> **頁首高度**：`.hdr__inner` 用固定的 `height`（不是 `min-height`），且中英文**共用同一組斷點**
+> （1280px 以下收成漢堡選單）。這兩點是為了確保切換語言時頁首高度不會跳動——
+> 曾經因為給英文開了專屬斷點，導致 1181–1300px 之間英文版頁首整個塌成 0 高。
+> 請不要再為單一語言加專屬的版面斷點。
+
+### 文案放在哪裡（兩個地方，分工不同）
+
+1. **介面字串** → `i18n/locales/zh-TW.json` 與 `en.json`
+   按鈕、標籤、提示語這類跟內容無關的字。用 `t('nav.about')` 取用。
+
+2. **內容** → `app/data/*.ts`，中英並排寫在同一個物件裡
+
+   ```ts
+   name: { zh: '韓伯維', en: 'Han Po-wei' }
+   ```
+
+   在元件裡用 `useLocalized()` 的 `t()`／`tAll()` 取用：
+
+   ```ts
+   const { t: tc } = useLocalized()
+   tc(mentor.name)          // 單段
+   tAll(mentor.reflection)  // 多段（字串陣列）
+   ```
+
+   **為什麼不全部塞進 locale JSON**：內容是給校方人員校對的，中英擺在同一行才看得出
+   哪句對哪句、哪裡還沒翻。拆成兩個 JSON 檔會變成在兩個檔案間對行號。
+
+   `en` 填 `null` 代表尚未翻譯，畫面會自動退回顯示中文，不會壞掉也不會出現空白。
+
+### 活動花絮的標題
+
+照片標題從檔名解析，英文對照放在 `scripts/gallery-en.json`（中文標題當鍵）。
+補完照片後把新標題加進去再跑 `python scripts/gen-gallery.py`，既有翻譯不會被覆蓋；
+查不到對照的標題其 `en` 會是 `null`，腳本結束時會列出來提醒。
+
+### 上線前要請人確認的暫譯
+
+英文內容是先翻好待審的版本。以下項目**需要正式名稱**，確認後直接改資料檔：
+
+- [ ] **14 位導師的英文姓名拼法** — `app/data/outstanding.ts` 的 `name.en`。
+      目前用威妥瑪式拼法（如 `Hsieh Chieh-ming`），但老師各自的護照／論文拼法可能不同，
+      應向本人確認。`Salone Ishahavut` 為布農族名的既有羅馬拼寫。
+- [ ] **6 本繪本的英文書名** — `app/data/books.ts` 中標有 `titleEnUnofficial: true` 的都是暫譯，
+      需向中大出版中心確認。2025 年《片片絮語》的 `A Murmur of Light` 是書上既有的正式英文名。
+- [ ] **系所英文名稱** — 依中大官方英文系所名填寫，仍建議比對一次。
+- [ ] **站名英譯** — 目前為 `Specialized Mentoring Programs`（`i18n/locales/en.json` 的 `site.name`）。
+
+`/accessibility` 的「已知限制」已載明姓名與書名為暫譯，正式名稱確認後請一併移除該條。
+
+### 英文版的版面注意事項
+
+英文比中文長，且**長單字不能像中文一樣逐字斷行**，很容易撐爆版面。已處理的地方：
+
+- 頁首容器加寬到 1340px；中英文共用 1280px 斷點（見上方「頁首高度」的說明）
+- 格線子項統一 `min-width: 0`，`minmax()` 的下限一律寫成 `minmax(min(280px, 100%), 1fr)`
+- 類別標籤 `.chip` 不使用 `white-space: nowrap`
+- 內文元素允許 `overflow-wrap: break-word`
+- 職稱不直接接在英文姓名後（`Hsieh Chieh-ming Professor` 是錯的），改放在系所那一行，
+  用 `t('common.sep')` 當分隔符號（中文全形空格／英文中點）
+
+**加新版面時請在 320px 寬度下確認不會橫向捲動**，中文看不出問題不代表英文沒問題。
+
+## 待補素材清單
+
+網站已用佔位框標示，補齊後只要換圖／改資料檔即可，版面不需調整。
+
+**圖片**
+
+- [ ] **首頁主視覺**（`網站圖片(徐姐負責)` 資料夾目前是空的）
+      放到 `public/images/hero.jpg`，再把 `app/pages/index.vue` 的 `<PlaceholderBox>` 換成 `<img>`。
+      建議 1600 × 1200 以上。
+- [ ] **宿舍組活動花絮 10 張**（目前 0 張）
+- [ ] **系學會活動花絮 7 張**（目前 3 張）
+- [ ] **傑出導師照片 4 位**：陳秀琪、蔡錫錚、吳忻怡、莎瓏．伊斯哈罕布德（皆為服務學習組）
+      放到 `public/images/mentors/{id}.jpg`，再把 `outstanding.ts` 該筆的 `photo: null` 改成路徑。
+- [ ] **繪本封面 7 張** — 放到 `public/images/books/`，再填 `books.ts` 的 `cover`。
+
+**文字**
+
+- [ ] **傑出導師 500 字心得 7 位**：謝介銘、陳秀琪、蔡錫錚、吳忻怡、鄭揚宜、李淑萍、楊舒芝
+      填入 `outstanding.ts` 的 `reflection`（字串陣列，一段一個元素）。
+- [ ] **學生心得回饋**：宿舍、職涯、服務學習、系學會四類都還沒有
+      （現有 8 則全部是體育組）。填入 `testimonials.ts`。
+- [ ] **頁尾聯絡資訊**：地址、電話、Email
+      填入 `site.ts` 的 `contact`，並把 `pending: true` 改成 `false`。
+      `/accessibility` 的問題回報區塊會一併帶出，無障礙聲明需要有可聯絡的窗口。
+
+**雙語化**（英文版已完成，以下為待確認的正式名稱）
+
+- [ ] 14 位導師的英文姓名拼法、6 本繪本的英文書名（見上方「雙語化」一節）。
+
+## 加新照片的流程
+
+1. 照片依規則命名：`年.月.日活動名稱.jpg`（例：`115.03.22課堂與職場-平行宇宙的對話.jpg`），
+   放進雲端資料的對應類別資料夾。
+2. 轉檔腳本會處理 HEIF / TIF / JFIF、依 EXIF 旋轉、縮到寬 1600、壓成 JPG，
+   並把日期與標題從檔名解析出來寫進 `app/data/gallery.ts`。
+3. 照片內容以全景、團體照或講師照為主，避免學生個人特寫。
+
+## 已知事項
+
+- `nuxt.config.ts` 關掉了 cssnano（`postcss: { plugins: { cssnano: false } }`）。
+  cssnano 的 `postcss-merge-longhand` 與這版 rolldown-vite 不相容，會在 build 時丟
+  `Method Set.prototype.has called on incompatible receiver`。CSS 改由 esbuild 壓縮。
+- 編輯器若對 `~/data/...` 的 import 報 "Cannot find module"，是 VS Code 沒讀到
+  `frontend/.nuxt/tsconfig.*.json`。把 `frontend` 直接開成工作區根目錄即可，`npm run build` 不受影響。
+- 中文字型使用 Google Fonts 的 Noto Sans TC / Noto Serif TC。若部署環境擋外部連線，
+  請改為自帶字型檔並修改 `nuxt.config.ts` 的 `app.head.link`。
