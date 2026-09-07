@@ -157,8 +157,11 @@ const year = computed(() => tc(resultsYear))
                 :to="localePath('/books')"
                 :aria-label="`${t('home.booksTitle')}：${b.year} ${tc(b.title)}`"
               >
+                <!-- 連結已具名、下方也有可見書名，此處圖片視為裝飾 -->
+                <img v-if="b.cover" :src="b.cover" alt="" class="mini__cover" loading="lazy" />
                 <PlaceholderBox
-                  ratio="3 / 4"
+                  v-else
+                  ratio="4 / 3"
                   icon="book"
                   :label="t('common.coverPending')"
                   decorative
@@ -269,6 +272,12 @@ const year = computed(() => tc(resultsYear))
   transition: transform 0.2s ease;
 }
 .mini a:hover img { transform: translateY(-2px); }
+/* 繪本封面比例不一，用 contain 完整顯示，不裁切書名 */
+.mini__cover {
+  object-fit: contain;
+  background: #fff;
+  padding: 6px;
+}
 .mini span {
   font-size: 13px;
   line-height: 1.6;

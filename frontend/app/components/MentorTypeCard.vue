@@ -38,8 +38,13 @@ const localePath = useLocalePath()
   background: var(--accent); color: #fff; margin-bottom: 16px;
   box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 28%, transparent);
 }
-.tcard__name { font-size: 19px; color: var(--accent-text); margin-bottom: 8px; }
-.tcard__tagline { font-size: 14.5px; color: var(--ink-2); margin: 0 0 10px; line-height: 1.7; }
+.tcard__name { font-size: 19px; color: var(--accent-text); margin-bottom: 8px; text-wrap: balance; }
+.tcard__tagline {
+  font-size: 14.5px; color: var(--ink-2); margin: 0 0 10px; line-height: 1.7;
+  /* 標語換行時讓兩行長度平均，避免最後一行只剩一個字（例如「…學習場／域」）。
+     不支援的瀏覽器會自動忽略，退回一般斷行。 */
+  text-wrap: balance;
+}
 .tcard__intro {
   font-size: 13.5px; color: var(--ink-3); line-height: 1.85; margin: 0 0 16px;
   display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;

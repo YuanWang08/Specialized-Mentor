@@ -27,7 +27,7 @@ export const mentorTypes: MentorType[] = [
     name: { zh: '宿舍導師', en: 'Residence Hall Mentors' },
     short: { zh: '宿舍', en: 'Residence' },
     tagline: {
-      zh: '讓宿舍成為第二個學習場域',
+      zh: '讓宿舍成為第二學習場域',
       en: 'Making the residence hall a second place to learn',
     },
     intro: {

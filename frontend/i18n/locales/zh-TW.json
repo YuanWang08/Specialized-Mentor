@@ -112,10 +112,9 @@
   "outstanding": {
     "eyebrow": "OUTSTANDING MENTORS",
     "title": "{year}傑出專項導師",
-    "lead": "本學年共 {n} 位傑出專項導師，來自五類專項輔導領域。點選導師卡片可閱讀完整的輔導心得。",
+    "lead": "本學年共 {n} 位傑出專項導師，來自五類專項輔導領域。",
     "listHeading": "傑出導師列表",
     "filterLabel": "依導師類別篩選傑出導師",
-    "collected": "已收錄心得 {n} / {total} 位，其餘陸續更新中",
     "readReflection": "閱讀心得",
     "viewProfile": "查看介紹",
     "readReflectionOf": "閱讀{name}{rank}的輔導心得",
@@ -138,8 +137,7 @@
   "books": {
     "eyebrow": "PICTURE BOOKS",
     "title": "優良導師繪本",
-    "lead": "自 2019 年起，每年以圖文繪本記錄中央大學優良導師與學生之間的故事，由中央大學出版中心出版。",
-    "coverNote": "繪本封面圖檔尚未提供，目前以佔位框呈現；封面補齊後將直接替換。各繪本可透過「前往書籍頁面」連結至中央大學出版中心查看詳細資訊。",
+    "lead": "每年以圖文繪本記錄中央大學優良導師與學生之間的故事，由中央大學出版中心出版。",
     "goToBook": "前往書籍頁面",
     "goToBookOf": "前往中央大學出版中心查看《{title}》（另開新視窗）",
     "noPage": "尚無線上書籍頁面"
@@ -147,14 +145,10 @@
   "gallery": {
     "eyebrow": "GALLERY",
     "title": "活動花絮",
-    "lead": "記錄五類專項導師帶領學生走進宿舍、職場、偏鄉與運動場的每一個現場，共 {n} 張紀錄。",
+    "lead": "記錄五類專項導師帶領學生走進宿舍、職場、偏鄉與運動場的每一個現場。",
     "listHeading": "活動照片列表",
     "filterLabel": "依導師類別篩選活動花絮",
     "empty": "此類別的活動花絮照片尚未提供。",
-    "gapTitle": "待補素材",
-    "gapBody": "依上傳規則，各類導師應各提供 10 張活動花絮照片，目前尚缺：",
-    "gapItem": "目前 {n} 張，尚缺 {missing} 張",
-    "gapRule": "照片檔名格式：年.月.日活動名稱；以全景、團體照或講師照為主，避免學生個人特寫。",
     "zoom": "放大檢視：{caption}",
     "dialogLabel": "活動照片檢視",
     "closeDialog": "關閉照片檢視",
@@ -198,10 +192,11 @@
     "sitemap": "網站導覽",
     "links": "相關連結",
     "contact": "聯絡我們",
-    "contactPending": "聯絡資訊待補",
-    "contactPendingNote": "（地址、電話、Email）",
-    "rights": "All Rights Reserved.",
-    "navLabel": "頁尾網站導覽"
+    "rights": "版權所有",
+    "navLabel": "頁尾網站導覽",
+    "address": "地址",
+    "phone": "電話",
+    "utilsLabel": "網站相關連結"
   },
   "error": {
     "notFound": "找不到這個頁面",

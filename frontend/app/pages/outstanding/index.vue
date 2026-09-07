@@ -17,7 +17,6 @@ const shown = computed(() =>
 )
 const countOf = (id: MentorTypeId) => outstanding.filter((m) => m.type === id).length
 const counts = computed(() => Object.fromEntries(mentorTypes.map((m) => [m.id, countOf(m.id)])))
-const withReflection = computed(() => outstanding.filter((m) => m.reflection).length)
 </script>
 
 <template>
@@ -31,18 +30,13 @@ const withReflection = computed(() => outstanding.filter((m) => m.reflection).le
 
     <section class="section section--white">
       <div class="wrap">
-        <div class="bar">
-          <FilterTabs
-            v-model="filter"
-            :counts="counts"
-            :total="outstanding.length"
-            :label="t('outstanding.filterLabel')"
-            :unit="t('units.person')"
-          />
-          <p class="bar__note">
-            {{ t('outstanding.collected', { n: withReflection, total: outstanding.length }) }}
-          </p>
-        </div>
+        <FilterTabs
+          v-model="filter"
+          :counts="counts"
+          :total="outstanding.length"
+          :label="t('outstanding.filterLabel')"
+          :unit="t('units.person')"
+        />
 
         <h2 class="sr-only">{{ t('outstanding.listHeading') }}</h2>
         <ul class="grid-4">
@@ -66,15 +60,6 @@ const withReflection = computed(() => outstanding.filter((m) => m.reflection).le
 </template>
 
 <style scoped>
-.bar {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 18px;
-  flex-wrap: wrap;
-}
-.bar__note { margin: 4px 0 28px; font-size: 13px; color: var(--ink-3); }
-
 .grid-4 { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
 .cta {

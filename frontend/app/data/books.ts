@@ -25,7 +25,7 @@ export const books: Book[] = [
     },
     author: { zh: '圖文：趙思涵', en: 'Words and pictures: Chao Ssu-han' },
     link: 'https://ncupress.ncu.edu.tw/book_detail/297',
-    cover: null,
+    cover: '/images/books/2025.jpg',
   },
   {
     year: '2024',
@@ -36,7 +36,7 @@ export const books: Book[] = [
     },
     author: { zh: '圖文：黃琪紋', en: 'Words and pictures: Huang Chi-wen' },
     link: 'https://ncupress.ncu.edu.tw/book_detail/272',
-    cover: null,
+    cover: '/images/books/2024.jpg',
     titleEnUnofficial: true,
   },
   {
@@ -48,7 +48,7 @@ export const books: Book[] = [
     },
     author: { zh: '圖文：黃琪紋', en: 'Words and pictures: Huang Chi-wen' },
     link: 'https://ncupress.ncu.edu.tw/book_detail/265',
-    cover: null,
+    cover: '/images/books/2023.jpg',
     titleEnUnofficial: true,
   },
   {
@@ -60,7 +60,7 @@ export const books: Book[] = [
     },
     author: { zh: '圖文：黃琪紋', en: 'Words and pictures: Huang Chi-wen' },
     link: 'https://ncupress.ncu.edu.tw/book_detail/283',
-    cover: null,
+    cover: '/images/books/2022.jpg',
     titleEnUnofficial: true,
   },
   {
@@ -72,7 +72,7 @@ export const books: Book[] = [
     },
     author: { zh: '圖文：林聖凱', en: 'Words and pictures: Lin Sheng-kai' },
     link: 'https://ncupress.ncu.edu.tw/book_detail/244',
-    cover: null,
+    cover: '/images/books/2021.jpg',
     titleEnUnofficial: true,
   },
   {
@@ -87,18 +87,19 @@ export const books: Book[] = [
       en: 'Pictures: Lin Sheng-kai　Words: Pan Ting-han',
     },
     link: 'https://ncupress.ncu.edu.tw/book_detail/234',
-    cover: null,
+    cover: '/images/books/2020.jpg',
     titleEnUnofficial: true,
   },
   {
     year: '2019',
-    title: { zh: '中央大學優良導師群像', en: "Portraits of NCU's Outstanding Advisors" },
+    title: { zh: '為他們點亮一盞燈', en: 'Lighting a Lamp for Them' },
     subtitle: {
-      zh: '2019 中央大學優良導師繪本',
-      en: 'NCU Outstanding Advisor Picture Book, 2019',
+      zh: '2019 中央大學傑出與優良教師群像',
+      en: "Portraits of NCU's Distinguished and Outstanding Teachers, 2019",
     },
     author: { zh: '圖文：林聖凱', en: 'Words and pictures: Lin Sheng-kai' },
-    cover: null,
+    link: 'https://ncupress.ncu.edu.tw/book_detail/207',
+    cover: '/images/books/2019.jpg',
     titleEnUnofficial: true,
   },
 ]

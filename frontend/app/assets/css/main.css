@@ -148,6 +148,16 @@ ul { margin: 0; padding: 0; }
 .stats > *, .kpi > *, .shelf > *, .list > *, .mini > *, .qlist > *, .map__sub > * {
   min-width: 0;
 }
+
+/* 格線項目（li）會被 stretch 撐到整列高度，但項目「裡面」的卡片預設只有內容高度，
+   於是同一列中文字較多的卡片會比較高、底部參差不齊（例如標語換到第二行的宿舍導師）。
+   讓卡片填滿儲存格，同一列的卡片外框與底部按鈕就會對齊。 */
+.grid-2 > * > .card,
+.grid-3 > * > .card,
+.grid-4 > * > .card,
+.grid-5 > * > .card {
+  height: 100%;
+}
 p, li, dt, dd, h1, h2, h3, h4, blockquote, figcaption, .card, .chip {
   overflow-wrap: break-word;
 }

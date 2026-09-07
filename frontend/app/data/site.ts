@@ -40,12 +40,36 @@ export const nav: NavItem[] = [
   { key: 'gallery', to: '/gallery' },
 ]
 
-// TODO 待補：徐姐提供正式聯絡資訊後替換，並把 pending 改為 false
+/**
+ * 頁尾聯絡資訊。
+ *
+ * 內容由使用者於 2026-09-07 提供，但當時的說法是「據我所知可能可以用」，
+ * 尚未經徐姐或諮商中心正式確認。上線前請核對：主管單位、郵遞區號、分機、隱私權政策網址。
+ */
 export const contact = {
-  pending: true,
-  address: { zh: '（地址待補）', en: '(address pending)' } satisfies L,
-  phone: { zh: '（電話待補）', en: '(telephone pending)' } satisfies L,
-  email: { zh: '（Email 待補）', en: '(email pending)' } satisfies L,
+  /**
+   * 內容是否已經正式確認。畫面上不再顯示提示（依使用者要求移除），
+   * 這個旗標留作團隊的待辦註記：向諮商中心確認過就改成 false。
+   */
+  unconfirmed: true,
+  unit: {
+    zh: '學務處諮商中心',
+    en: 'Counseling Center, Office of Student Affairs',
+  } satisfies L,
+  address: {
+    zh: '(320017) 桃園市中壢區中大路 300 號',
+    en: 'No. 300, Zhongda Rd., Zhongli Dist., Taoyuan City 320017, Taiwan',
+  } satisfies L,
+  phone: {
+    zh: '(03) 422-7151 分機 57263',
+    en: '+886-3-422-7151 ext. 57263',
+  } satisfies L,
+  /** 供 tel: 連結使用，只留數字與必要符號 */
+  phoneHref: 'tel:+886-3-4227151,57263',
+  privacy: {
+    label: { zh: '隱私權政策聲明', en: 'Privacy Policy' } satisfies L,
+    href: 'https://www.cc.ncu.edu.tw/p/412-1033-159.php',
+  },
   links: [
     {
       label: { zh: '中央大學首頁', en: 'NCU Home' } satisfies L,

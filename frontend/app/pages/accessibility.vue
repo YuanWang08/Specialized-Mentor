@@ -101,10 +101,12 @@ const limits: LP = {
   zh: [
     '部分單元的照片與文字內容仍在陸續補齊，網站上會以明確的文字說明目前狀態，不會以空白或無意義的佔位符呈現。',
     '英文版的導師姓名拼法與部分繪本書名為暫譯，正式名稱確認後將更新。',
+    '頁尾的聯絡資訊尚待主管單位正式確認。',
   ],
   en: [
     'Photographs and text for some sections are still being collected. Where content is not yet available the site says so in words, rather than leaving a blank or a meaningless placeholder.',
     'In the English version, the romanisation of mentors\' names and some picture book titles are provisional translations, and will be updated once the official forms are confirmed.',
+    'The contact details in the footer are awaiting formal confirmation from the responsible office.',
   ],
 }
 
@@ -150,13 +152,13 @@ const contactBody: L = {
 
         <h2 class="doc__h2">{{ tc(contactTitle) }}</h2>
         <p>{{ tc(contactBody) }}</p>
-        <p v-if="contact.pending" class="ph--inline">
-          {{ t('footer.contactPending') }}{{ t('footer.contactPendingNote') }}
-        </p>
-        <ul v-else class="limits">
-          <li>{{ tc(contact.address) }}</li>
-          <li>{{ tc(contact.phone) }}</li>
-          <li>{{ tc(contact.email) }}</li>
+        <ul class="limits">
+          <li>{{ t('site.org') }}{{ t('common.sep') }}{{ tc(contact.unit) }}</li>
+          <li>{{ t('footer.address') }}{{ t('common.sep') }}{{ tc(contact.address) }}</li>
+          <li>
+            {{ t('footer.phone') }}{{ t('common.sep') }}
+            <a :href="contact.phoneHref">{{ tc(contact.phone) }}</a>
+          </li>
         </ul>
       </div>
     </section>

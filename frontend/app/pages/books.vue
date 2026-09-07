@@ -19,8 +19,6 @@ useHead({ title: t('books.title') })
 
     <section class="section section--white">
       <div class="wrap">
-        <p class="ph--inline">{{ t('books.coverNote') }}</p>
-
         <ul class="shelf">
           <li v-for="b in books" :key="b.year" class="bk card card--hover">
             <div class="bk__cover">
@@ -66,8 +64,20 @@ useHead({ title: t('books.title') })
   margin-top: 28px;
 }
 .bk { overflow: hidden; display: flex; flex-direction: column; }
-.bk__cover { position: relative; background: var(--cream-2); }
-.bk__cover img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.bk__cover {
+  position: relative;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+/* 各年度封面比例差很多（平面書封 0.77 到立體書照 1.49）。
+   用 object-fit: cover 會把橫幅封面的書名裁掉，改用 contain 完整呈現，
+   四周留白由固定的框比例吸收。 */
+.bk__cover img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  padding: 14px;
+}
 .bk__year {
   position: absolute;
   top: 12px;

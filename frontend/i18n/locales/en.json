@@ -112,10 +112,9 @@
   "outstanding": {
     "eyebrow": "OUTSTANDING MENTORS",
     "title": "Outstanding Mentors, {year}",
-    "lead": "{n} outstanding mentors this academic year, drawn from all five mentoring programs. Select a card to read a mentor's full reflection.",
+    "lead": "{n} outstanding mentors this academic year, drawn from all five mentoring programs.",
     "listHeading": "List of outstanding mentors",
     "filterLabel": "Filter outstanding mentors by program",
-    "collected": "{n} of {total} reflections received; the rest are being added",
     "readReflection": "Read reflection",
     "viewProfile": "View profile",
     "readReflectionOf": "Read the mentoring reflection of {rank} {name}",
@@ -138,8 +137,7 @@
   "books": {
     "eyebrow": "PICTURE BOOKS",
     "title": "Picture Books of Outstanding Advisors",
-    "lead": "Since 2019, an illustrated book has been published each year recording the stories between NCU's outstanding advisors and their students, produced by NCU Press.",
-    "coverNote": "Cover images have not been supplied yet and are shown as placeholders; they will be swapped in once available. Each book links through to NCU Press for full details.",
+    "lead": "Each year an illustrated book records the stories between NCU's outstanding advisors and their students, published by NCU Press.",
     "goToBook": "View on NCU Press",
     "goToBookOf": "View \"{title}\" on NCU Press (opens in a new window)",
     "noPage": "No online page available"
@@ -147,14 +145,10 @@
   "gallery": {
     "eyebrow": "GALLERY",
     "title": "Gallery",
-    "lead": "Moments from the residence halls, workplaces, rural schools and playing fields where mentors and students meet — {n} photographs in all.",
+    "lead": "Moments from the residence halls, workplaces, rural schools and playing fields where mentors and students meet.",
     "listHeading": "Photo list",
     "filterLabel": "Filter photos by program",
     "empty": "No activity photos have been submitted for this program yet.",
-    "gapTitle": "Photos still needed",
-    "gapBody": "Each program is asked to supply 10 activity photos. Still outstanding:",
-    "gapItem": "{n} received, {missing} still needed",
-    "gapRule": "File naming: year.month.day followed by the activity name. Prefer wide shots, group photos or images of the speaker; avoid close-ups of individual students.",
     "zoom": "Enlarge: {caption}",
     "dialogLabel": "Photo viewer",
     "closeDialog": "Close photo viewer",
@@ -198,10 +192,11 @@
     "sitemap": "Site Map",
     "links": "Related Links",
     "contact": "Contact Us",
-    "contactPending": "Contact details pending",
-    "contactPendingNote": "(address, telephone, email)",
     "rights": "All Rights Reserved.",
-    "navLabel": "Footer navigation"
+    "navLabel": "Footer navigation",
+    "address": "Address",
+    "phone": "Telephone",
+    "utilsLabel": "Site utilities"
   },
   "error": {
     "notFound": "Page not found",

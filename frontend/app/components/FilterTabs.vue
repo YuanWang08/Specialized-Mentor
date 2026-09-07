@@ -24,6 +24,9 @@ const emit = defineEmits<{ 'update:modelValue': [MentorTypeId | 'all'] }>()
 const { t: tc } = useLocalized()
 const { t } = useI18n()
 
+/** 數量為 0 的分類不顯示：按了也沒東西，留著只是死按鈕 */
+const shownTypes = computed(() => mentorTypes.filter((m) => (props.counts[m.id] ?? 0) > 0))
+
 const current = computed(() => {
   if (props.modelValue === 'all') return t('common.all')
   const found = mentorTypes.find((m) => m.id === props.modelValue)
@@ -47,11 +50,11 @@ const shownCount = computed(() =>
         {{ t('common.all') }} <span class="tab__n">{{ total }}</span>
       </button>
       <button
-        v-for="m in mentorTypes"
+        v-for="m in shownTypes"
         :key="m.id"
         type="button"
         class="tab"
-        :class="{ 'tab--on': modelValue === m.id, 'tab--empty': !counts[m.id] }"
+        :class="{ 'tab--on': modelValue === m.id }"
         :style="{ '--accent-text': m.colorText }"
         :aria-pressed="modelValue === m.id"
         @click="emit('update:modelValue', m.id)"
@@ -89,7 +92,4 @@ const shownCount = computed(() =>
 .tab--on { background: var(--accent-text); border-color: var(--accent-text); color: #fff; }
 /* rgba 白會降低對比，改用實色淺藍灰，對加深底色仍有 4.5:1 以上 */
 .tab--on .tab__n { color: #e4eef2; }
-/* 沒有資料的類別：用虛線邊框與斜線圖示表示，不靠降低透明度（會使對比不足） */
-.tab--empty { border-style: dashed; }
-.tab--empty:not(.tab--on) .tab__n { color: var(--ink-3); }
 </style>

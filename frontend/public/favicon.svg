@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="多元專項輔導導師成果網">
+  <title>多元專項輔導導師成果網</title>
+  <rect width="64" height="64" rx="14" fill="#123f52" />
+  <g transform="translate(-0.6 -4.7) scale(1.63)" fill="none">
+    <path
+      d="M20 34C13 29.5 6.5 24.5 6.5 17.8A6.6 6.6 0 0 1 20 14.4a6.6 6.6 0 0 1 13.5 3.4C33.5 24.5 27 29.5 20 34Z"
+      fill="#ffffff"
+    />
+    <circle cx="14.6" cy="17.4" r="2.5" fill="#123f52" />
+    <circle cx="25.4" cy="17.4" r="2.5" fill="#123f52" />
+    <path
+      d="M15 24c1.6 1.6 3.2 2.4 5 2.4s3.4-.8 5-2.4"
+      stroke="#123f52"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+  </g>
+</svg>

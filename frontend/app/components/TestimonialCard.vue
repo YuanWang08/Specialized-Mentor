@@ -30,10 +30,16 @@ const type = computed(() => typeMap[props.item.type])
 .tq__body--clamp {
   display: -webkit-box; -webkit-line-clamp: 5; line-clamp: 5;
   -webkit-box-orient: vertical; overflow: hidden;
+  /* 固定成 5 行高：不足 5 行的心得也佔滿同樣高度，
+     下方的分隔線與標籤才會在每張卡片的同一個位置。 */
+  height: calc(1.95em * 5);
 }
 .tq__meta {
-  margin-top: auto; padding-top: 13px; border-top: 1px solid var(--line);
-  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  /* 不用 margin-top:auto 貼底：那會讓 meta 依姓名長短（1～3 行）上下浮動，
+     分隔線在每張卡片的高度都不一樣。改成緊接內文，
+     長度差異吃在卡片底部的留白，分隔線與標籤就一定對齊。 */
+  padding-top: 13px; border-top: 1px solid var(--line);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
 }
 .tq__who { font-size: 13px; color: var(--ink-3); }
 </style>
