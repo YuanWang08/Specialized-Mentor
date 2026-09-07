@@ -1,3 +1,25 @@
+import { mentorTypes } from './app/data/mentorTypes'
+import { outstanding } from './app/data/outstanding'
+
+/**
+ * 需要預先產生的路由。
+ * 爬蟲會跟著頁面上的連結走，但動態路由（/mentors/[type]、/outstanding/[id]）
+ * 明確列出來比較保險，日後加了新導師也不會漏掉。
+ */
+const staticPaths = [
+  '/', '/about', '/mentors', '/results', '/outstanding',
+  '/books', '/gallery', '/voices', '/sitemap', '/accessibility',
+  // 404 做成真的頁面來預先產生，建置後再複製成 404.html（見 scripts/finalize-static.mjs）
+  '/404',
+]
+const dynamicPaths = [
+  ...mentorTypes.map((m) => `/mentors/${m.id}`),
+  ...outstanding.map((m) => `/outstanding/${m.id}`),
+]
+const allPaths = [...staticPaths, ...dynamicPaths]
+// 英文版路由（strategy: prefix_except_default，所以中文不加前綴、英文加 /en）
+const prerenderRoutes = [...allPaths, ...allPaths.map((p) => `/en${p === '/' ? '' : p}`)]
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -41,6 +63,19 @@ export default defineNuxtConfig({
       ],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
+  },
+
+  /**
+   * 全站靜態產出（npm run generate → .output/public）。
+   * 網站所有內容都在 app/data 的資料檔裡，沒有任何伺服器端邏輯或即時資料，
+   * 因此不需要 SSR runtime；純靜態檔部署到 Cloudflare Pages 最單純也最穩。
+   */
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: prerenderRoutes,
+      failOnError: true,
+    },
   },
 
   // cssnano 的 postcss-merge-longhand 與 rolldown-vite 不相容（Set.prototype.has 錯誤），

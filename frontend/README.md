@@ -216,6 +216,74 @@ iOS 加到主畫面用，已填底色因為 iOS 不支援透明），全部在 `
 
 要換圖示時改 `favicon.svg`，再用瀏覽器把它渲染成 512×512 的 PNG，用 Pillow 產生其餘尺寸即可。
 
+## 部署到 Cloudflare Pages
+
+網站是**全靜態**產出：所有內容都在 `app/data` 的資料檔裡，沒有 API、沒有即時資料，
+所以不需要 SSR runtime，直接把靜態檔丟上去最單純也最不會壞。
+
+```bash
+npm run generate     # 產出 .output/public（含 124 個預先產生的頁面）
+```
+
+### 設定值
+
+| 項目 | 值 |
+| --- | --- |
+| Framework preset | **None**（不要選 Nuxt，那會走 SSR/Workers） |
+| Build command | `npm run generate` |
+| Build output directory | `.output/public` |
+| Root directory | `frontend` |
+| Node 版本 | 環境變數設 `NODE_VERSION` = `22` |
+
+> `.npmrc` 已設 `legacy-peer-deps=true`，Cloudflare 上的 `npm install` 會沿用，不必另外設定。
+
+### 方式一：直接上傳（最快，不需要 Git）
+
+適合「先丟上去給人看」。
+
+```bash
+npm run generate
+npx wrangler pages deploy .output/public --project-name=ncu-mentors
+```
+
+第一次會要求登入 Cloudflare（瀏覽器授權）。完成後會給一個
+`https://<專案名>.pages.dev` 的網址。之後每次重跑同一行指令就會更新。
+
+也可以不用指令：Cloudflare 後台 → Workers & Pages → Create → Pages →
+Upload assets，把 `.output/public` 整個資料夾拖進去。
+
+### 方式二：接 Git（正式上線建議用這個）
+
+把專案推上 GitHub/GitLab 後，在 Cloudflare 後台選 Connect to Git，
+再依上表填設定值。之後 push 就會自動建置部署，並且每個 PR 都有預覽網址。
+
+**注意**：目前 `Specialized-Mentor` 還不是 git repo，也還沒有 remote。
+要走這條路得先 `git init` 並建立遠端庫。
+
+### 已經處理好的部署相關設定
+
+- **`nuxt.config.ts` 的 `nitro.prerender`** — 明確列出所有路由（含 14 位導師的個人頁、
+  五類導師頁，中英文各一份），`failOnError: true` 讓漏頁時建置直接失敗而不是默默上線。
+  之後新增導師只要加進 `outstanding.ts`，路由清單會自動跟著長。
+- **`public/_headers`** — Cloudflare Pages 專用。設了基本安全標頭
+  （`X-Content-Type-Options`、`X-Frame-Options`、`Referrer-Policy`、`Permissions-Policy`），
+  並讓帶雜湊的 `/_nuxt/*` 長期快取、`/images/*` 快取一天。
+- **`scripts/finalize-static.mjs`**（由 `postgenerate` 自動執行）— 把預先產生的 `/404`
+  複製成主機看得懂的 `404.html`，並檢查關鍵檔案齊全，缺了就讓建置失敗。
+
+  Nuxt 預設產出的 `404.html` 是 SPA 空殼：沒有 `<title>`、關掉 JS 就是一片空白。
+  對有無障礙要求的公部門網站不合格，所以 404 做成真的會被預先渲染的頁面。
+
+### 部署前自我檢查
+
+```bash
+npm run generate
+npx serve .output/public        # 或任何靜態伺服器
+```
+
+`.output/public` 約 24 MB，其中 21 MB 是照片。Cloudflare Pages 單檔上限 25 MB、
+單次部署 20,000 個檔案，這個規模遠低於限制。
+
 ## 待補素材清單
 
 網站已用佔位框標示，補齊後只要換圖／改資料檔即可，版面不需調整。
