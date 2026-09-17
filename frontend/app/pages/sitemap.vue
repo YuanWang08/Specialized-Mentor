@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { mentorTypes } from '~/data/mentorTypes'
+import { mentorTypes, typeMap } from '~/data/mentorTypes'
+import { systemChapters } from '~/data/system'
 import { outstanding } from '~/data/outstanding'
 import { resultsYear } from '~/data/results'
 import { useLocalized } from '~/data/i18n'
@@ -52,6 +53,12 @@ const groups = computed(() => [
       label: t('sitemap.typeGallery', { name: tc(m.name) }),
       to: `/gallery#${m.id}`,
     })),
+  },
+  {
+    title: t('nav.system'),
+    to: '/system',
+    desc: t('sitemap.systemDesc'),
+    children: systemChapters.map((c) => ({ label: tc(typeMap[c.type].name), to: `/system#${c.type}` })),
   },
   { title: t('nav.voices'), to: '/voices', desc: t('sitemap.voicesDesc'), children: [] },
   {

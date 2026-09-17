@@ -234,6 +234,14 @@ const next = computed(() => outstanding[(idx.value + 1) % outstanding.length])
   .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 14px; }
   .pager__all { display: none; }
 }
+/* 雙欄時項目數為奇數：最後一個置中 */
+@media (min-width: 431px) and (max-width: 860px) {
+  .grid-4 > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - 14px) / 2);
+  }
+}
 
 /* 英文卡片在 2 欄下會過窄，最窄的螢幕改單欄 */
 @media (max-width: 430px) {

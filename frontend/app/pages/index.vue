@@ -16,7 +16,23 @@ const localePath = useLocalePath()
 useHead({ title: null, titleTemplate: () => `${t('site.name')}｜${t('site.org')}` })
 
 const featuredMentors = computed(() => outstanding.filter((m) => m.photo).slice(0, 8))
-const featuredQuotes = computed(() => publishedTestimonials.slice(0, 3))
+/**
+ * 首頁心得橫向列：各類別輪流挑，避免連續好幾則都是同一類。
+ * 只挑內文夠長（≥ 80 字）的，一句話的短評放在大卡片裡會顯得空；最多 12 則。
+ */
+const QUOTE_MAX = 12
+const featuredQuotes = computed(() => {
+  const pools = ['service', 'dorm', 'sports', 'career', 'club'].map((type) =>
+    publishedTestimonials.filter((q) => q.type === type && q.content.zh.join('').length >= 80),
+  )
+  const picked: typeof publishedTestimonials = []
+  for (let round = 0; picked.length < QUOTE_MAX; round++) {
+    const batch = pools.map((p) => p[round]).filter((q) => q !== undefined)
+    if (!batch.length) break
+    picked.push(...batch.slice(0, QUOTE_MAX - picked.length))
+  }
+  return picked
+})
 const featuredPhotos = computed(() => photos.filter((p) => p.date).slice(0, 6))
 const featuredBooks = computed(() => books.slice(0, 3))
 const year = computed(() => tc(resultsYear))
@@ -34,11 +50,30 @@ const year = computed(() => tc(resultsYear))
             {{ t('home.heroCta') }} <AppIcon name="arrow" :size="13" class="btn__arrow" />
           </NuxtLink>
         </div>
+        <!-- 主視覺：一大兩小的固定拼貼（不做輪播，避免自動播放的無障礙問題）。
+             大圖描述校園氛圍；兩張小圖是同性質的補充畫面，視為裝飾。 -->
         <div class="hero__media">
-          <PlaceholderBox
-            ratio="4 / 3"
-            :label="t('home.heroPlaceholder')"
-            :note="t('home.heroPlaceholderNote')"
+          <img
+            src="/images/mainpage/hero-1.jpg"
+            :alt="t('home.heroAlt')"
+            class="hero__img hero__img--main"
+            width="1367"
+            height="911"
+            fetchpriority="high"
+          />
+          <img
+            src="/images/mainpage/hero-2.jpg"
+            alt=""
+            class="hero__img hero__img--sub"
+            width="1367"
+            height="911"
+          />
+          <img
+            src="/images/mainpage/hero-3.jpg"
+            alt=""
+            class="hero__img hero__img--sub"
+            width="1367"
+            height="911"
           />
         </div>
       </div>
@@ -96,9 +131,11 @@ const year = computed(() => tc(resultsYear))
     <section class="section section--white">
       <div class="wrap">
         <SectionHeading :title="t('home.voicesTitle')" :sub="t('home.voicesSub')" />
-        <ul class="grid-3">
-          <li v-for="q in featuredQuotes" :key="q.id"><TestimonialCard :item="q" clamp /></li>
-        </ul>
+      </div>
+      <div class="qwide">
+        <QuoteCarousel :items="featuredQuotes" />
+      </div>
+      <div class="wrap">
         <div class="sec-more">
           <NuxtLink :to="localePath('/voices')" class="btn btn--ghost">
             {{ t('home.voicesMore') }} <AppIcon name="arrow" :size="12" class="btn__arrow" />
@@ -112,12 +149,13 @@ const year = computed(() => tc(resultsYear))
       <div class="wrap">
         <SectionHeading
           :title="t('home.outstandingTitle')"
-          :sub="t('home.outstandingSub', { year, n: outstanding.length })"
+          :sub="t('home.outstandingSub', { year })"
         />
         <ul class="grid-4">
           <li v-for="m in featuredMentors" :key="m.id"><MentorCard :mentor="m" /></li>
         </ul>
         <div class="sec-more">
+          <p class="ai-note">{{ t('home.photoAiNote') }}</p>
           <NuxtLink :to="localePath('/outstanding')" class="btn btn--ghost">
             {{ t('home.outstandingMore') }} <AppIcon name="arrow" :size="12" class="btn__arrow" />
           </NuxtLink>
@@ -211,6 +249,30 @@ const year = computed(() => tc(resultsYear))
   max-width: 34em;
 }
 
+/* 主視覺拼貼 */
+.hero__media {
+  display: grid;
+  grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  aspect-ratio: 4 / 3;
+}
+.hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+.hero__img--main { grid-row: 1 / -1; object-position: 58% center; }
+.hero__img--sub { border-radius: var(--radius); }
+
+/* 心得輪播：比內文寬，兩側卡片才放得下 */
+.qwide { max-width: 1440px; margin-inline: auto; }
+
+/* 導師照片的 AI 生成說明：放在按鈕上方的小字 */
+.ai-note { margin: 0 0 10px; font-size: 12.5px; color: var(--ink-3); }
+
 /* 通用格線 */
 .grid-5,
 .grid-4,
@@ -296,6 +358,10 @@ const year = computed(() => tc(resultsYear))
 }
 @media (max-width: 860px) {
   .hero__inner { grid-template-columns: 1fr; padding-block: 44px 48px; gap: 30px; }
+  /* 窄螢幕只留大圖，小圖擠在一起反而看不清楚 */
+  .hero__media { display: block; aspect-ratio: auto; }
+  .hero__img--main { aspect-ratio: 3 / 2; height: auto; }
+  .hero__img--sub { display: none; }
   .grid-3 { grid-template-columns: 1fr; }
   .duo { grid-template-columns: 1fr; gap: 40px; }
 }
@@ -305,6 +371,20 @@ const year = computed(() => tc(resultsYear))
   .stats { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .stats__label { grid-column: span 2; }
   .stats__value { font-size: 25px; }
+  /* 雙欄時項目數為奇數：最後一個置中 */
+  .stats__item:last-child:nth-child(even) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - 12px) / 2);
+  }
+}
+@media (min-width: 431px) and (max-width: 640px) {
+  .grid-5 > li:last-child:nth-child(odd),
+  .grid-4 > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - 14px) / 2);
+  }
 }
 
 /* 英文卡片在 2 欄下會過窄，最窄的螢幕改單欄 */

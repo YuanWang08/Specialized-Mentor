@@ -13,6 +13,7 @@
     "outstanding": "傑出導師分享",
     "books": "優良導師繪本",
     "gallery": "活動花絮",
+    "system": "中大導師制度",
     "voices": "學生心得回饋",
     "sitemap": "網站導覽",
     "accessibility": "無障礙聲明",
@@ -63,14 +64,19 @@
     "voicesSub": "來自同學最真實的聲音",
     "voicesMore": "閱讀更多心得",
     "outstandingTitle": "傑出導師分享",
-    "outstandingSub": "{year}傑出專項導師，共 {n} 位",
+    "outstandingSub": "{year}傑出專項導師",
     "outstandingMore": "查看更多傑出導師分享",
     "galleryTitle": "活動花絮",
     "galleryMore": "瀏覽更多活動",
     "booksTitle": "優良導師繪本",
     "booksMore": "查看更多繪本",
-    "heroPlaceholder": "首頁主視覺待補",
-    "heroPlaceholderNote": "建議尺寸 1600 × 1200 以上　來源：網站圖片（徐姐負責）"
+    "heroAlt": "五位學生在中央大學校園的大榕樹下草地上野餐",
+    "voicesPrev": "上一則心得",
+    "voicesNext": "下一則心得",
+    "voicesCarousel": "學生心得",
+    "voicesSlide": "則",
+    "voicesGoTo": "第 {i} 則，共 {n} 則",
+    "photoAiNote": "圖片由AI生成"
   },
   "about": {
     "eyebrow": "ABOUT",
@@ -95,7 +101,9 @@
     "noPhotos": "{name}的活動花絮照片尚未提供（預計 {n} 張）。",
     "partialPhotos": "目前 {n} 張，尚待補齊至 {target} 張。",
     "readAllVoices": "閱讀全部心得",
-    "outstandingTitle": "{year}傑出{name}"
+    "outstandingTitle": "{year}傑出{name}",
+    "unitSite": "前往單位網站",
+    "unitSiteOf": "：{name}負責單位"
   },
   "results": {
     "eyebrow": "RESULTS",
@@ -103,7 +111,7 @@
     "lead": "五大專項導師一年來的輔導量能、活動場次與學生參與情形。",
     "typePage": "專頁",
     "awards": "競賽榮譽",
-    "kpiTitle": "高教深耕計畫指標達成情形",
+    "kpiTitle": "114-115/5深耕成果",
     "kpiSub": "統計期間：{period}（教務處統籌）",
     "kpiRate": "達成率 {n}%",
     "kpiBarLabel": "達成率 {n}%",
@@ -124,7 +132,7 @@
     "ctaBtn": "閱讀學生心得",
     "badge": "{year}傑出{name}",
     "reflectionTitle": "輔導心得",
-    "noReflection": "{name}{rank}的輔導心得尚未提供，內容補齊後將於此顯示。",
+    "noReflection": "老師還在用心編輯中~敬請期待~",
     "ownGallery": "輔導活動花絮",
     "ownGallerySub": "{name}{rank}指導的活動紀錄",
     "siblings": "其他傑出{name}",
@@ -139,8 +147,15 @@
     "title": "優良導師繪本",
     "lead": "每年以圖文繪本記錄中央大學優良導師與學生之間的故事，由中央大學出版中心出版。",
     "goToBook": "前往書籍頁面",
-    "goToBookOf": "前往中央大學出版中心查看《{title}》（另開新視窗）",
-    "noPage": "尚無線上書籍頁面"
+    "goToBookOf": "：《{title}》，中央大學出版中心",
+    "noPage": "尚無線上書籍頁面",
+    "detailsOf": "：《{title}》書籍資訊",
+    "dialogLabel": "《{title}》書籍資訊",
+    "published": "出版日期",
+    "publisher": "出版單位",
+    "intro": "簡介",
+    "close": "關閉",
+    "author": "作者"
   },
   "gallery": {
     "eyebrow": "GALLERY",
@@ -160,13 +175,10 @@
   "voices": {
     "eyebrow": "STUDENT VOICES",
     "title": "學生心得回饋",
-    "lead": "來自同學最真實的聲音，記錄專項導師如何陪伴他們走過大學生活，共 {n} 則。",
+    "lead": "來自同學最真實的聲音，記錄專項導師如何陪伴他們走過大學生活。",
     "listHeading": "學生回饋列表",
     "filterLabel": "依導師類別篩選學生心得",
-    "empty": "此類別的學生回饋尚未提供。",
-    "gapTitle": "待補回饋",
-    "gapBody": "以下類別的學生心得回饋尚未收到，內容補齊後將於此顯示：",
-    "gapRule": "回饋格式：導師類別、系所、年級、姓名、回饋內容（200 字以內）、學年度。"
+    "empty": "此類別的學生回饋尚未提供。"
   },
   "sitemap": {
     "eyebrow": "SITEMAP",
@@ -186,7 +198,19 @@
     "voicesDesc": "同學對專項導師陪伴的回饋。",
     "accessibilityDesc": "本網站的無障礙設計說明與鍵盤操作方式。",
     "typeResults": "{name}成果",
-    "typeGallery": "{name}花絮"
+    "typeGallery": "{name}花絮",
+    "systemDesc": "專項輔導導師制度的緣起、五類導師的任務與輔導量能。"
+  },
+  "system": {
+    "originTitle": "制度緣起",
+    "factsLabel": "制度概況",
+    "jumpLabel": "快速前往各類導師說明",
+    "chaptersTitle": "五類專項輔導導師",
+    "chaptersSub": "五種不同的陪伴方式，共同培育學生的軟實力",
+    "studentSays": "同學回饋",
+    "closingUnit": "位導師",
+    "toOutstanding": "認識傑出專項導師",
+    "toResults": "查看年度成果"
   },
   "footer": {
     "sitemap": "網站導覽",

@@ -61,7 +61,7 @@ a { color: var(--navy-700); text-decoration: none; }
 a:hover { color: var(--navy-600); }
 h1, h2, h3, h4 { line-height: 1.4; margin: 0; font-weight: 700; }
 p { margin: 0 0 1em; }
-ul { margin: 0; padding: 0; }
+ul, ol { margin: 0; padding: 0; }
 
 :focus-visible { outline: 3px solid var(--navy-600); outline-offset: 2px; border-radius: 4px; }
 
@@ -161,6 +161,19 @@ ul { margin: 0; padding: 0; }
 p, li, dt, dd, h1, h2, h3, h4, blockquote, figcaption, .card, .chip {
   overflow-wrap: break-word;
 }
+
+/* ===== 心得卡片的逐列對齊（subgrid）=====
+   每張卡片有三段：引號圖示／內文／系所資訊。用 subgrid 讓同一「列」的卡片共用這三段的列高：
+   內文高度＝這一列最長的那則（仍最多 5 行），分隔線與標籤就會對齊；
+   整列都是一句話短評時，卡片也跟著變矮，不會留一大塊空白。 */
+.quote-grid > li,
+.quote-grid > li > .tq {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  row-gap: 12px;
+}
+.quote-grid > li > .tq > .tq__body { align-self: start; }
 
 /* ===== 螢幕閱讀器專用文字 ===== */
 .sr-only {

@@ -1,6 +1,5 @@
 {
   "_comment": "活動花絮照片標題的英文對照。鍵是檔名解析出的中文標題，值是英文。gen-gallery.py 會查這張表；查不到的標題其 en 會是 null，網站上會退回顯示中文。新增照片後把新標題補進這裡即可，重跑腳本不會覆蓋既有翻譯。",
-
   "校友留學分享": "Alumni Talk: Studying Abroad",
   "中文系的藝術產業之旅": "Chinese Literature: A Journey into the Arts Industries",
   "電機系校友職涯歷程演講": "Electrical Engineering Alumni Career Talk",
@@ -10,7 +9,6 @@
   "AI世代的職涯與未來": "Careers and the Future in the Age of AI",
   "產業趨勢講座": "Industry Trends Lecture",
   "從學生到勞動者非典型勞動下的職涯發展與勞動權益保障": "From Student to Worker: Career Development and Labour Rights under Non-standard Employment",
-
   "學長姐執行教案經驗傳承": "Senior Students Pass On Their Lesson-Delivery Experience",
   "各小組與老師討論": "Group Discussions with the Mentor",
   "科學教案設計 (黑洞科學)": "Science Lesson Design (Black Hole Science)",
@@ -51,11 +49,9 @@
   "科學教育小組舉辦科學營_力學遊戲": "Science Education Group Science Camp: Mechanics Games",
   "科學教育小組舉辦科學營_機器人實驗室": "Science Education Group Science Camp: Robotics Laboratory",
   "科學教育小組舉辦科教營隊_大型風洞實驗室": "Science Education Group Science Camp: Large Wind Tunnel Laboratory",
-
   "大氣系學會運動會繞場": "Atmospheric Sciences Student Association Parades at the Sports Meet",
   "中文系學會致謝主任": "Chinese Literature Student Association Thanks the Department Chair",
   "中文系學會畢業公演活動照": "Chinese Literature Student Association Graduation Performance",
-
   "全大運閉幕典禮舞蹈隊表演": "Dance Team Performs at the Closing Ceremony of the National Intercollegiate Athletic Games",
   "校園路跑": "Campus Road Run",
   "全校運動會": "University Sports Meet",
@@ -65,5 +61,15 @@
   "運動代表隊年度榮耀表揚典禮": "Annual Varsity Squad Awards Ceremony",
   "115全大運田徑賽": "Athletics at the 2026 National Intercollegiate Athletic Games",
   "115全大運金牌與畢業隊員合照_跆拳道隊": "Gold Medal and Graduating Team Members, Taekwondo Squad, 2026 National Intercollegiate Athletic Games",
-  "體育導師余宏群老師參加2026亞洲錦標賽榮獲金牌": "Physical Education Mentor Yu Hung-chun Takes Gold at the 2026 Asian Championships"
+  "體育導師余宏群老師參加2026亞洲錦標賽榮獲金牌": "Physical Education Mentor Yu Hung-chun Takes Gold at the 2026 Asian Championships",
+  "海島記憶-認識蘭嶼文化與石筆海膽手作": "Island Memories: Orchid Island Culture and Slate-Pencil Urchin Crafts",
+  "人生設計-如何用「設計思考」來探索生涯發展": "Designing Your Life: Using Design Thinking to Explore Career Development",
+  "手作-梭織萬用墊": "Hands-on Workshop: Shuttle-Woven Mat",
+  "手作-回收木料時鐘製作": "Hands-on Workshop: Making a Clock from Reclaimed Wood",
+  "跟蹤騷擾情境解謎遊戲《記憶深處的抽屜》": "Stalking Awareness Puzzle Game: \"The Drawer Deep in Memory\"",
+  "整理師的收納心法": "A Professional Organiser's Secrets of Storage",
+  "相框內的微型風景": "A Miniature Landscape in a Frame",
+  "我還能當多久原住民？從傳統樂器、文化實踐到洄游行動": "How Long Can I Remain Indigenous? From Traditional Instruments and Cultural Practice to Returning Home",
+  "在邊界之間發光：都市原住民的文化藝術與行動": "Shining Between Borders: Culture, Art and Action of Urban Indigenous Peoples",
+  "讓情緒安全落地-纏繞毛線球體驗": "Landing Your Emotions Safely: A Yarn-Ball Wrapping Workshop"
 }

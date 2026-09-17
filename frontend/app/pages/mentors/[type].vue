@@ -27,6 +27,18 @@ const pics = computed(() => photosByType(id.value))
 const result = computed(() => results.find((r) => r.type === id.value))
 const others = computed(() => mentorTypes.filter((m) => m.id !== id.value))
 const year = computed(() => tc(resultsYear))
+
+/**
+ * 區塊底色白／米交替。傑出導師、學生心得在沒有資料時整段不顯示，
+ * 所以依「前面實際顯示了幾段」決定底色，才不會出現兩段同色相連。
+ */
+const toneAt = (i: number) => (i % 2 ? 'section--tint' : 'section--white')
+const idx = computed(() => {
+  const mentorsI = 1
+  const voicesI = mentorsI + (mentors.value.length ? 1 : 0)
+  const galleryI = voicesI + (quotes.value.length ? 1 : 0)
+  return { mentors: mentorsI, voices: voicesI, gallery: galleryI, others: galleryI + 1 }
+})
 </script>
 
 <template>
@@ -37,17 +49,13 @@ const year = computed(() => tc(resultsYear))
       :accent="type.color"
       :accent-text="type.colorText"
     >
+      <template #action>
+        <a :href="type.website" target="_blank" rel="noopener" class="btn btn--ghost">
+          {{ t('mentors.unitSite') }}<span class="sr-only">{{ t('mentors.unitSiteOf', { name }) }}{{ t('common.newWindow') }}</span>
+          <AppIcon name="external" :size="13" />
+        </a>
+      </template>
       <p class="lead">{{ tc(type.intro) }}</p>
-      <a
-        v-if="type.link"
-        :href="type.link.href"
-        target="_blank"
-        rel="noopener"
-        class="btn btn--ghost hero-link"
-      >
-        {{ tc(type.link.label) }}<span class="sr-only">{{ t('common.newWindow') }}</span>
-        <AppIcon name="external" :size="13" />
-      </a>
     </PageHero>
 
     <!-- 計畫說明 -->
@@ -76,7 +84,7 @@ const year = computed(() => tc(resultsYear))
     </section>
 
     <!-- 傑出導師 -->
-    <section v-if="mentors.length" class="section section--tint">
+    <section v-if="mentors.length" class="section" :class="toneAt(idx.mentors)">
       <div class="wrap">
         <SectionHeading
           :title="t('mentors.outstandingTitle', { year, name })"
@@ -88,15 +96,14 @@ const year = computed(() => tc(resultsYear))
       </div>
     </section>
 
-    <!-- 學生回饋 -->
-    <section class="section section--white">
+    <!-- 學生回饋：尚無資料的類別整段隱藏 -->
+    <section v-if="quotes.length" class="section" :class="toneAt(idx.voices)">
       <div class="wrap">
         <SectionHeading :title="t('voices.title')" />
-        <ul v-if="quotes.length" class="grid-2">
+        <ul class="quote-grid grid-2">
           <li v-for="q in quotes" :key="q.id"><TestimonialCard :item="q" clamp /></li>
         </ul>
-        <p v-else class="ph--inline">{{ t('mentors.noVoices', { name }) }}</p>
-        <div v-if="quotes.length" class="sec-more">
+        <div class="sec-more">
           <NuxtLink :to="localePath('/voices')" class="btn btn--ghost">
             {{ t('mentors.readAllVoices') }} <AppIcon name="arrow" :size="12" class="btn__arrow" />
           </NuxtLink>
@@ -105,7 +112,7 @@ const year = computed(() => tc(resultsYear))
     </section>
 
     <!-- 活動花絮 -->
-    <section class="section section--tint">
+    <section class="section" :class="toneAt(idx.gallery)">
       <div class="wrap">
         <SectionHeading
           :title="t('gallery.title')"
@@ -122,7 +129,7 @@ const year = computed(() => tc(resultsYear))
     </section>
 
     <!-- 其他類別 -->
-    <section class="section section--white">
+    <section class="section" :class="toneAt(idx.others)">
       <div class="wrap">
         <SectionHeading :title="t('mentors.othersTitle')" />
         <ul class="grid-4">
@@ -134,8 +141,7 @@ const year = computed(() => tc(resultsYear))
 </template>
 
 <style scoped>
-.lead { margin: 14px 0 0; max-width: 46em; font-size: 15.5px; line-height: 2; color: var(--ink-2); }
-.hero-link { margin-top: 18px; }
+.lead { margin: 14px 0 0; font-size: 15.5px; line-height: 2; color: var(--ink-2); }
 
 .two { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 40px; align-items: start; }
 .blk-title {
@@ -178,6 +184,14 @@ const year = computed(() => tc(resultsYear))
 }
 @media (max-width: 800px) { .grid-2 { grid-template-columns: 1fr; } }
 @media (max-width: 640px) { .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+/* 雙欄時項目數為奇數：最後一個置中 */
+@media (min-width: 431px) and (max-width: 640px) {
+  .grid-4 > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - 14px) / 2);
+  }
+}
 
 /* 英文卡片在 2 欄下會過窄，最窄的螢幕改單欄 */
 @media (max-width: 430px) {

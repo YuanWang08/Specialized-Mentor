@@ -55,9 +55,12 @@ const closing: LP = {
             :key="m.id"
             :style="{ '--accent': m.color, '--accent-text': m.colorText }"
           >
-            <span class="chain__no">{{ String(i + 1).padStart(2, '0') }}</span>
-            <span class="chain__icon"><AppIcon :name="m.icon" :size="20" /></span>
-            <span class="chain__name">{{ tc(m.name) }}</span>
+            <NuxtLink :to="localePath(`/mentors/${m.id}`)" class="chain__link">
+              <!-- 編號只是視覺排序，連結名稱讀「宿舍導師」即可 -->
+              <span class="chain__no" aria-hidden="true">{{ String(i + 1).padStart(2, '0') }}</span>
+              <span class="chain__icon"><AppIcon :name="m.icon" :size="20" /></span>
+              <span class="chain__name">{{ tc(m.name) }}</span>
+            </NuxtLink>
           </li>
         </ol>
       </div>
@@ -127,7 +130,9 @@ const closing: LP = {
   gap: 14px;
   margin-top: 44px;
 }
-.chain li {
+.chain li { display: flex; }
+.chain__link {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -137,7 +142,15 @@ const closing: LP = {
   background: var(--cream-2);
   border-top: 3px solid var(--accent);
   text-align: center;
+  color: var(--navy-800);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
+.chain__link:hover {
+  transform: translateY(-3px);
+  background: #fff;
+  box-shadow: var(--shadow-md);
+}
+.chain__link:hover .chain__name { color: var(--accent-text); }
 .chain__no {
   font-size: 12px;
   letter-spacing: 0.12em;
@@ -182,11 +195,25 @@ const closing: LP = {
   color: var(--navy-800);
 }
 
+/* 窄螢幕：以 6 欄（3 列）／4 欄（2 列）為底、每項跨 2 欄，
+   最後一列不滿時就能用起始欄位把剩下的項目推到正中間 */
 @media (max-width: 860px) {
-  .chain { grid-template-columns: repeat(3, 1fr); }
+  .chain { grid-template-columns: repeat(6, 1fr); }
+  .chain li { grid-column: span 2; }
+  .chain li:nth-child(3n + 1):nth-last-child(2) { grid-column: 2 / span 2; }
+  .chain li:nth-child(3n + 1):last-child { grid-column: 3 / span 2; }
+}
+@media (max-width: 640px) {
+  .detail__foot { justify-content: center; }
+  /* 置中段落的最後一行改靠左，避免孤零零的幾個字懸在中間 */
+  .closing { text-align: justify; text-align-last: left; }
 }
 @media (max-width: 560px) {
-  .chain { grid-template-columns: repeat(2, 1fr); }
+  .chain { grid-template-columns: repeat(4, 1fr); }
+  .chain li,
+  .chain li:nth-child(3n + 1):nth-last-child(2),
+  .chain li:nth-child(3n + 1):last-child { grid-column: span 2; }
+  .chain li:nth-child(odd):last-child { grid-column: 2 / span 2; }
   .detail__item { padding: 22px 18px; }
 }
 </style>

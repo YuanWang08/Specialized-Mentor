@@ -6,6 +6,13 @@ export interface Book {
   subtitle?: L
   author: L
   link?: string
+  /** 沒有線上書籍頁面時，改在彈窗中顯示的書籍資訊 */
+  details?: {
+    /** 出版日期 YYYY-MM-DD */
+    date: string
+    publisher: L
+    intro: L
+  }
   cover: string | null
   /**
    * true 表示英文書名為暫譯，非中大出版中心的正式英文書名。
@@ -92,13 +99,24 @@ export const books: Book[] = [
   },
   {
     year: '2019',
-    title: { zh: '為他們點亮一盞燈', en: 'Lighting a Lamp for Them' },
+    title: { zh: '導路', en: 'Guiding the Way' },
     subtitle: {
-      zh: '2019 中央大學傑出與優良教師群像',
-      en: "Portraits of NCU's Distinguished and Outstanding Teachers, 2019",
+      zh: '2019 中央大學優良導師群像',
+      en: 'Portraits of NCU Outstanding Advisors, 2019',
     },
     author: { zh: '圖文：林聖凱', en: 'Words and pictures: Lin Sheng-kai' },
-    link: 'https://ncupress.ncu.edu.tw/book_detail/207',
+    // 此書沒有出版中心的線上頁面，改用彈窗顯示書籍資訊
+    details: {
+      date: '2019-09-01',
+      publisher: {
+        zh: '國立中央大學諮商輔導中心',
+        en: 'Counseling Center, National Central University',
+      },
+      intro: {
+        zh: '邀請電機系畢業校友林聖凱校友擔任主編，希望用繪畫、插文全新的方式拉近師生的距離。透過這本著色書，分享中大優良導師們對導生的關心、傾聽、同理及鼓勵，搭配精美細膩的圖畫，學務處希望能勉勵每一位導師，亦師亦友做學生最堅強的精神支柱。此外，這本書無論是人物或景色都極為傳神，適合每一個人來著色，希望也能夠達到舒壓效果，值得師生珍藏。',
+        en: 'Edited by Lin Sheng-kai, an alumnus of the Department of Electrical Engineering, this book sets out to bring teachers and students closer through a new form of drawings and illustrated text. As a colouring book, it shares the care, attentive listening, empathy and encouragement that NCU\'s outstanding advisors offer their students. With its fine, detailed drawings, the Office of Student Affairs hopes to encourage every advisor to be both teacher and friend — the steadiest source of support a student can have. Its people and places are drawn so vividly that anyone can enjoy colouring them in, and we hope it offers a little stress relief too. A book for teachers and students alike to keep.',
+      },
+    },
     cover: '/images/books/2019.jpg',
     titleEnUnofficial: true,
   },

@@ -74,6 +74,14 @@ const counts = computed(() => Object.fromEntries(mentorTypes.map((m) => [m.id, c
 
 @media (max-width: 1080px) { .grid-4 { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 640px) { .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+/* 雙欄時項目數為奇數：最後一個置中 */
+@media (min-width: 431px) and (max-width: 640px) {
+  .grid-4 > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - 14px) / 2);
+  }
+}
 
 /* 英文卡片在 2 欄下會過窄，最窄的螢幕改單欄 */
 @media (max-width: 430px) {

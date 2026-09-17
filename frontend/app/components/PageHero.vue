@@ -22,7 +22,11 @@ defineProps<{
   >
     <div class="wrap">
       <p v-if="eyebrow" class="phero__eyebrow" :lang="eyebrowLang || undefined">{{ eyebrow }}</p>
-      <h1 class="phero__title">{{ title }}</h1>
+      <div v-if="$slots.action" class="phero__head">
+        <h1 class="phero__title">{{ title }}</h1>
+        <div class="phero__action"><slot name="action" /></div>
+      </div>
+      <h1 v-else class="phero__title">{{ title }}</h1>
       <p v-if="lead" class="phero__lead">{{ lead }}</p>
       <slot />
     </div>
@@ -57,6 +61,14 @@ defineProps<{
   font-size: clamp(26px, 3.6vw, 38px);
   color: var(--navy-800);
 }
+.phero__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.phero__action { flex: none; }
 .phero__lead {
   margin: 14px 0 0;
   max-width: 46em;

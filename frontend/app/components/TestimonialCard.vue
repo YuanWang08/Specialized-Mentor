@@ -22,7 +22,8 @@ const type = computed(() => typeMap[props.item.type])
 </template>
 
 <style scoped>
-.tq { padding: 24px 24px 20px; display: flex; flex-direction: column; gap: 12px; position: relative; }
+/* figure 預設有 1em 40px 的外距，會讓卡片比格子窄、間距變大，要歸零 */
+.tq { margin: 0; padding: 24px 24px 20px; display: flex; flex-direction: column; gap: 12px; position: relative; }
 .tq__mark { color: var(--accent); opacity: .3; flex: none; }
 .tq__body { margin: 0; font-size: 14.5px; line-height: 1.95; color: var(--ink-2); }
 .tq__body p { margin: 0 0 .85em; }
@@ -30,9 +31,6 @@ const type = computed(() => typeMap[props.item.type])
 .tq__body--clamp {
   display: -webkit-box; -webkit-line-clamp: 5; line-clamp: 5;
   -webkit-box-orient: vertical; overflow: hidden;
-  /* 固定成 5 行高：不足 5 行的心得也佔滿同樣高度，
-     下方的分隔線與標籤才會在每張卡片的同一個位置。 */
-  height: calc(1.95em * 5);
 }
 .tq__meta {
   /* 不用 margin-top:auto 貼底：那會讓 meta 依姓名長短（1～3 行）上下浮動，

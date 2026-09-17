@@ -80,6 +80,9 @@ for zh, en in CAT.items():
             stem, ext = os.path.splitext(f)
             if ext.lower() not in ('.jpg','.jpeg','.png','.heif','.heic','.tif','.tiff','.jfif'): continue
             date, title = parse_name(stem)
+            # 宿舍照片檔名都以「宿舍導師講座」開頭，畫面上已有類別標籤，標題去掉這段
+            title = re.sub(r'^宿舍導師講座\s*', '', title)
+            title = re.sub(r'\s+》', '》', title)
             items.append({'src':os.path.join(root,f),'date':date,'title':title,'teacher':teacher,'orig':f})
     items.sort(key=lambda x:(x['date'] or '9999', x['title']))
     out = []

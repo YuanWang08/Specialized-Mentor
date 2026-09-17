@@ -35,8 +35,10 @@ const countPhotos = (id: string) => photos.filter((p) => p.type === id).length
             <NuxtLink :to="localePath(`/mentors/${m.id}`)" class="row__link">
               <span class="row__icon"><AppIcon :name="m.icon" :size="30" /></span>
               <div class="row__main">
-                <h2 class="row__name">{{ tc(m.name) }}</h2>
-                <p class="row__tagline">{{ tc(m.tagline) }}</p>
+                <div class="row__head">
+                  <h2 class="row__name">{{ tc(m.name) }}</h2>
+                  <p class="row__tagline">{{ tc(m.tagline) }}</p>
+                </div>
                 <p class="row__intro">{{ tc(m.intro) }}</p>
               </div>
               <div class="row__meta">
@@ -83,7 +85,15 @@ const countPhotos = (id: string) => photos.filter((p) => p.type === id).length
   flex: none;
 }
 .row__name { font-size: 21px; color: var(--accent-text); }
-.row__tagline { margin: 4px 0 8px; font-size: 14.5px; color: var(--ink-2); }
+/* 標題與標語同一行（寬度夠時），放不下才自動把標語換到下一行 */
+.row__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 14px;
+  margin-bottom: 8px;
+}
+.row__tagline { margin: 0; font-size: 14.5px; color: var(--ink-2); }
 .row__intro {
   margin: 0;
   font-size: 13.5px;

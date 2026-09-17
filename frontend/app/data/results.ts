@@ -32,12 +32,12 @@ export const results: ResultEntry[] = [
         label: { zh: '宿舍導師', en: 'residence hall mentors' },
       },
       {
-        value: '22',
+        value: '23',
         unit: { zh: '場', en: 'lectures' },
         label: { zh: '宿舍導師講座', en: 'residence hall lectures' },
       },
       {
-        value: '648',
+        value: '796',
         unit: { zh: '人次', en: 'attendances' },
         label: { zh: '累計參與', en: 'total attendance' },
       },

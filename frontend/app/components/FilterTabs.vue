@@ -89,7 +89,9 @@ const shownCount = computed(() =>
 }
 .tab__n { font-size: 12px; color: var(--ink-3); }
 .tab:hover { border-color: var(--accent-text); color: var(--accent-text); }
-.tab--on { background: var(--accent-text); border-color: var(--accent-text); color: #fff; }
-/* rgba 白會降低對比，改用實色淺藍灰，對加深底色仍有 4.5:1 以上 */
-.tab--on .tab__n { color: #e4eef2; }
+/* 要同時寫 :hover：.tab:hover 的權重比 .tab--on 高，滑鼠停在已選取的按鈕上時字會變成跟底色同色 */
+.tab--on,
+.tab--on:hover { background: var(--accent-text); border-color: var(--accent-text); color: #fff; }
+/* 數字用純白：淺藍灰 #e4eef2 在宿舍的綠底上只有 4.4:1，未達 AA */
+.tab--on .tab__n { color: #fff; opacity: 1; }
 </style>

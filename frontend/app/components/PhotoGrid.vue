@@ -198,7 +198,13 @@ watch(active, (v) => {
 .lb__nav--next { justify-self: end; }
 
 @media (max-width: 640px) {
-  .pg { grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr)); gap: 12px; }
+  .pg { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  /* 雙欄時項目數為奇數：最後一個置中 */
+  .pg > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - 12px) / 2);
+  }
   .pg__cap { padding: 10px; }
   .lb { grid-template-columns: 44px 1fr 44px; }
   .lb__x,

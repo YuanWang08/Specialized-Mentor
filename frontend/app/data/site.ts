@@ -38,6 +38,7 @@ export const nav: NavItem[] = [
   { key: 'outstanding', to: '/outstanding' },
   { key: 'books', to: '/books' },
   { key: 'gallery', to: '/gallery' },
+  { key: 'system', to: '/system' },
 ]
 
 /**
@@ -61,16 +62,20 @@ export const contact = {
     en: 'No. 300, Zhongda Rd., Zhongli Dist., Taoyuan City 320017, Taiwan',
   } satisfies L,
   phone: {
-    zh: '(03) 422-7151 分機 57263',
-    en: '+886-3-422-7151 ext. 57263',
+    zh: '(03) 422-7151 分機 57261',
+    en: '+886-3-422-7151 ext. 57261',
   } satisfies L,
   /** 供 tel: 連結使用，只留數字與必要符號 */
-  phoneHref: 'tel:+886-3-4227151,57263',
+  phoneHref: 'tel:+886-3-4227151,57261',
   privacy: {
     label: { zh: '隱私權政策聲明', en: 'Privacy Policy' } satisfies L,
     href: 'https://www.cc.ncu.edu.tw/p/412-1033-159.php',
   },
   links: [
+    {
+      label: { zh: '中央大學學務處', en: 'NCU Office of Student Affairs' } satisfies L,
+      href: 'https://osa.ncu.edu.tw/index.php',
+    },
     {
       label: { zh: '中央大學首頁', en: 'NCU Home' } satisfies L,
       href: 'https://www.ncu.edu.tw/',

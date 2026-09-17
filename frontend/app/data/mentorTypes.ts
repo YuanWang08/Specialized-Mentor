@@ -17,6 +17,8 @@ export interface MentorType {
   colorText: string
   icon: 'home' | 'briefcase' | 'heart' | 'users' | 'run'
   link?: { label: L; href: string }
+  /** 負責單位的網站，顯示在該類導師專頁標題右側的「前往單位網站」按鈕 */
+  website: string
   /** 114 學年度成果重點（資料來源：年度成果分頁） */
   highlight: { value: string; unit: L; label: L }
 }
@@ -24,6 +26,7 @@ export interface MentorType {
 export const mentorTypes: MentorType[] = [
   {
     id: 'dorm',
+    website: 'https://shsd.ncu.edu.tw/',
     name: { zh: '宿舍導師', en: 'Residence Hall Mentors' },
     short: { zh: '宿舍', en: 'Residence' },
     tagline: {
@@ -42,13 +45,14 @@ export const mentorTypes: MentorType[] = [
     colorText: 'var(--c-dorm-text)',
     icon: 'home',
     highlight: {
-      value: '648',
+      value: '796',
       unit: { zh: '人次', en: 'attendances' },
       label: { zh: '宿舍導師講座參與', en: 'at residence hall lectures' },
     },
   },
   {
     id: 'career',
+    website: 'https://consulting.careercenter.ncu.edu.tw/',
     name: { zh: '職涯導師', en: 'Career Mentors' },
     short: { zh: '職涯', en: 'Career' },
     tagline: {
@@ -78,6 +82,7 @@ export const mentorTypes: MentorType[] = [
   },
   {
     id: 'service',
+    website: 'https://service-learning.ncu.edu.tw/',
     name: { zh: '服務學習導師', en: 'Service Learning Mentors' },
     short: { zh: '服務學習', en: 'Service Learning' },
     tagline: {
@@ -103,6 +108,7 @@ export const mentorTypes: MentorType[] = [
   },
   {
     id: 'club',
+    website: 'https://club.adm.ncu.edu.tw/',
     name: { zh: '系學會導師', en: 'Student Association Mentors' },
     short: { zh: '系學會', en: 'Student Association' },
     tagline: {
@@ -128,6 +134,7 @@ export const mentorTypes: MentorType[] = [
   },
   {
     id: 'sports',
+    website: 'https://pe.ncu.edu.tw/',
     name: { zh: '體育導師', en: 'Physical Education Mentors' },
     short: { zh: '體育', en: 'Physical Education' },
     tagline: {

@@ -10,7 +10,7 @@ export interface Outstanding {
   type: MentorTypeId
   /** 導師心語（20 字內） */
   motto: L
-  /** 簡述表心得（500 字以內），各組尚未填寫者為 null */
+  /** 簡述表心得（500 字以內），尚未填寫者為 null（頁面顯示「老師還在用心編輯中」） */
   reflection: LP | null
   /** 相片路徑，尚未提供者為 null */
   photo: string | null
@@ -31,7 +31,20 @@ export const outstanding: Outstanding[] = [
       zh: '做中學習累積能力，勇於探索成就自我。',
       en: 'Build ability by doing; become yourself by daring to explore.',
     },
-    reflection: null,
+    reflection: {
+      zh: [
+        '擔任宿舍導師對我而言，是相較於課堂中的正式教學，讓我有機會在學生的課餘生活中，透過活動、交流與關懷，陪伴學生面對生活適應、人際互動與情緒調適等不同面向的挑戰與成長。',
+        '本學期參與宿民大會，透過與宿舍幹部及宿民的交流，更加了解學生住宿的需求與想法，也感受到宿舍自治背後學生幹部所需投入的時間與心力。宿民大會除了是宿舍事務的溝通平台，更是一個培養學生責任感、公共參與及團隊合作的重要場域，讓學生在共同生活中學習彼此尊重與協調。',
+        '本學期參與三場主題活動，主題圍繞生活管理與情緒照顧。在「整理師的收納心法」講座中，講師在整理與收納技巧的分享，引導學生思考生活空間與心理狀態間的關係，也幫助學生在忙碌的學期中建立更有秩序的生活習慣。後續由我邀請心理諮商師來進行兩場活動，第一場「翻開情緒小百科」主軸是協助學生認識「情緒的功能」、學習「情緒的覺察」、鼓勵學生理解並接納自己的情緒反應、學習以更健康的方式與壓力共處。後續「讓情緒安全落地－纏繞毛線球體驗」活動，則包含部分講座來教導可嘗試透過「專注於當下」讓情緒安全落地，鼓勵學生透過自己喜歡的舒壓活動，如：此次的纏繞毛線球手作體驗，讓自己在慢下來的過程中舒緩壓力，也在互動中感受到陪伴與支持的重要。',
+        '我也不定時提供宿民關懷與輔導，透過較輕鬆且真誠的對話，了解學生近期生活狀況、課業壓力與情緒需求。期末參與宿舍導師工作坊與其他導師經驗交流，讓我重新檢視本學期的活動安排與陪伴方式，也獲得許多新啟發與想法。整體而言，擔任宿舍導師讓我更加深刻感受到，宿舍不只是提供住宿的空間，也是一個支持學生學習獨立、建立人際關係與探索自我的重要場域！',
+      ],
+      en: [
+        'Unlike formal teaching in the classroom, being a residence hall mentor gives me the chance to be part of students\' lives outside class — through activities, conversation and care, walking alongside them as they face the challenges of adjusting to life on their own, getting along with others and managing their emotions, and as they grow through those challenges.',
+        'This semester I took part in the residents\' assembly. Talking with hall officers and residents helped me understand what students need and think about hall life, and showed me how much time and effort the student officers put into running the hall themselves. The assembly is more than a forum for hall business: it is an important place for students to develop responsibility, civic participation and teamwork, and to learn mutual respect and give-and-take as they live together.',
+        'I also took part in three themed events this semester, centred on managing daily life and caring for one\'s emotions. In the talk "A Professional Organiser\'s Secrets of Storage", the speaker\'s tips on tidying and storage led students to think about the link between their living space and their state of mind, and helped them build more orderly habits in a busy semester. I then invited a counselling psychologist to lead two events. The first, "Opening the Encyclopaedia of Emotions", helped students understand what emotions are for, learn to notice them, accept their own emotional responses, and find healthier ways of living with stress. The second, "Landing Your Emotions Safely: A Yarn-Ball Wrapping Workshop", included a short talk on grounding emotions by focusing on the present moment, and encouraged students to relieve stress through activities they enjoy — like wrapping yarn balls by hand — slowing down to ease the pressure, and feeling through the shared activity how much company and support matter.',
+        'I also check in with residents from time to time, using relaxed and genuine conversation to learn how their lives, studies and emotional needs are going. At the end of the semester, a residence hall mentor workshop and exchange with other mentors let me look back at how I had planned activities and supported students, and gave me many new ideas. Above all, being a residence hall mentor has shown me more deeply that a residence hall is not just a place to live: it is an important place that supports students as they learn independence, build relationships and discover who they are.',
+      ],
+    },
     photo: '/images/mentors/xie-jieming.jpg',
   },
   {
@@ -115,7 +128,7 @@ export const outstanding: Outstanding[] = [
       en: 'Care for society with kindness; serve others with warmth.',
     },
     reflection: null,
-    photo: null,
+    photo: '/images/mentors/chen-xiuqi.jpg',
   },
   {
     id: 'cai-xizheng',
@@ -128,7 +141,7 @@ export const outstanding: Outstanding[] = [
       en: 'Let expertise meet the real world, and change something for the better.',
     },
     reflection: null,
-    photo: null,
+    photo: '/images/mentors/cai-xizheng.jpg',
   },
   {
     id: 'wu-xinyi',
@@ -141,7 +154,7 @@ export const outstanding: Outstanding[] = [
       en: 'Learn through service: understand one another, and truly see other people.',
     },
     reflection: null,
-    photo: null,
+    photo: '/images/mentors/wu-xinyi.jpg',
   },
   {
     id: 'zheng-yangyi',
@@ -198,7 +211,7 @@ export const outstanding: Outstanding[] = [
         "What stands out is the care she put into accompanying students while handing them real power. She taught fieldwork ethics and narrative technique in class, then threw herself into the second semester's exhibition work. Facing students who had never mounted a physical exhibition, she guided them through panel design, visitor flow and the hauling of heavy objects, inspecting each stage rigorously. The resulting exhibition, \"The Institute of Passion,\" brought these deep life stories back onto campus; she then had students return the panels to the people they had interviewed — service learning's principle of reciprocity and equality made real, carrying their view from the classroom out into the wider world.",
       ],
     },
-    photo: null,
+    photo: '/images/mentors/salone.jpg',
   },
   {
     id: 'li-shuping',
@@ -210,7 +223,14 @@ export const outstanding: Outstanding[] = [
       zh: '多方學習、生活實踐，成就不一樣的自己。',
       en: 'Learn widely, live it out, and become someone unlike anyone else.',
     },
-    reflection: null,
+    reflection: {
+      zh: [
+        '大學生活的璀璨光華，除了課堂上的專業學習，更多的是校園裡各種活動經驗與生活實踐。藉由多方學習，成就不一樣的自己！',
+      ],
+      en: [
+        'What makes university life shine is not only the professional learning in class, but even more the experience of all kinds of campus activities and putting what you learn into practice in daily life. Learn widely, and become a different version of yourself!',
+      ],
+    },
     photo: '/images/mentors/li-shuping.jpg',
   },
   {
@@ -223,7 +243,14 @@ export const outstanding: Outstanding[] = [
       zh: '關懷社會、探索自我，將正向力量傳承下去。',
       en: 'Care for society, explore yourself, and pass the good forward.',
     },
-    reflection: null,
+    reflection: {
+      zh: [
+        '希望各位同學加入中大這個大家庭不只在專業領域上有收穫，在待人處事上也能有所成長。學會用心對待身邊的人事物，關懷社會，思考自己獨特的價值，並且將在中大獲得的正向力量Pay it foward。',
+      ],
+      en: [
+        'I hope that everyone who joins the NCU family gains not only in their field of study, but also grows in how they treat people and handle things: learning to give real care to the people and things around them, caring about society, reflecting on their own unique value — and paying forward the positive energy they gain at NCU.',
+      ],
+    },
     photo: '/images/mentors/yang-shuzhi.jpg',
   },
   {

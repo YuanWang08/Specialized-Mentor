@@ -106,7 +106,7 @@ const isActive = (to: string) => (to === '/' ? bare.value === '/' : bare.value.s
 .hdr__inner {
   display: flex; align-items: center; gap: 18px;
   height: 76px;
-  max-width: 1340px;
+  max-width: 1600px;
 }
 
 .brand {
@@ -158,6 +158,16 @@ const isActive = (to: string) => (to === '/' ? bare.value === '/' : bare.value.s
   display: block; padding: 8px 12px; border-radius: 8px; font-size: 14px; color: var(--ink);
 }
 .nav__sub a:hover { background: var(--cream-2); color: var(--navy-700); }
+
+/* 導覽列加入「中大導師制度」後，英文在 1281–1600px 放不下完整站名＋副標。
+   這段寬度兩種語言一起收緊（隱藏副標、縮小字級與間距），維持中英文版面一致。 */
+@media (max-width: 1600px) and (min-width: 1281px) {
+  .hdr__inner { gap: 14px; }
+  .nav__link { padding: 9px 8px; font-size: 14px; }
+  .nav__link--active::after { left: 8px; right: 8px; }
+  .brand__text strong { font-size: 17px; }
+  .brand__text small { display: none; }
+}
 
 /* 斷點兩種語言共用：英文導覽列約需 1273px，故訂在 1280px。
    共用同一個斷點才能保證切換語言時版面模式與高度都不變。 */
