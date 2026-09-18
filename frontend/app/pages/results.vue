@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { typeMap } from '~/data/mentorTypes'
 import { results, resultsYear, kpis, kpiPeriod, kpiIntro } from '~/data/results'
-import { useLocalized } from '~/data/i18n'
+import { useLocalized, splitParen } from '~/data/i18n'
 
 const { t } = useI18n()
 const { t: tc, tAll } = useLocalized()
@@ -42,7 +42,9 @@ useHead(() => ({ title: t('results.title', { year: year.value }) }))
             <ul class="rcard__stats">
               <li v-for="(s, i) in r.stats" :key="i">
                 <span class="rcard__val">{{ s.value }}<em>{{ tc(s.unit) }}</em></span>
-                <span class="rcard__cap">{{ tc(s.label) }}</span>
+                <span class="rcard__cap">
+                  {{ splitParen(tc(s.label))[0] }}<span class="nowrap">{{ splitParen(tc(s.label))[1] }}</span>
+                </span>
               </li>
             </ul>
 
@@ -85,13 +87,24 @@ useHead(() => ({ title: t('results.title', { year: year.value }) }))
             </div>
             <p class="kpi__label">{{ tc(k.label) }}</p>
             <p class="kpi__value">{{ tc(k.value) }}</p>
-            <div class="kpi__bar" role="img" :aria-label="t('results.kpiBarLabel', { n: k.rate })">
-              <span :style="{ width: Math.min(k.rate, 200) / 2 + '%' }" />
+            <!-- 整條＝實際值；深色段＝目標（100%），亮色段＝超額部分，分界處有目標刻度 -->
+            <div
+              class="kpi__bar"
+              role="img"
+              :aria-label="t('results.kpiBarLabel', { target: tc(k.target), value: tc(k.value), n: k.rate })"
+              :style="{ '--base': (100 / k.rate) * 100 + '%' }"
+            >
+              <span class="kpi__seg kpi__seg--base" />
+              <span class="kpi__seg kpi__seg--over" />
+              <span class="kpi__tick" />
             </div>
+            <p class="kpi__legend" aria-hidden="true">
+              <span>{{ t('results.kpiTarget', { v: tc(k.target) }) }}</span>
+              <span class="kpi__legend-over">{{ t('results.kpiOver', { v: tc(k.over) }) }}</span>
+            </p>
             <p class="kpi__note">{{ tc(k.note) }}</p>
           </li>
         </ul>
-        <p class="kpi__foot">{{ t('results.kpiFoot') }}</p>
       </div>
     </section>
   </div>
@@ -186,10 +199,43 @@ useHead(() => ({ title: t('results.title', { year: year.value }) }))
 .kpi__rate { font-size: 12px; color: var(--accent-text); font-weight: 500; }
 .kpi__label { margin: 6px 0 0; font-size: 13.5px; color: var(--ink-3); }
 .kpi__value { margin: 0; font-size: 25px; font-weight: 700; color: var(--navy-800); line-height: 1.3; }
-.kpi__bar { height: 6px; border-radius: 4px; background: var(--cream-2); overflow: hidden; margin: 4px 0 2px; }
-.kpi__bar span { display: block; height: 100%; background: var(--accent); border-radius: 4px; }
+/* 分段進度條：整條寬度代表實際值，前段（目標）用加深色、後段（超額）用鮮豔色 */
+.kpi__bar {
+  position: relative;
+  display: flex;
+  height: 10px;
+  margin: 8px 0 0;
+  border-radius: 5px;
+}
+.kpi__seg { height: 100%; }
+.kpi__seg--base { width: var(--base); background: var(--accent-text); border-radius: 5px 0 0 5px; }
+.kpi__seg--over {
+  flex: 1;
+  border-radius: 0 5px 5px 0;
+  background: repeating-linear-gradient(135deg, var(--accent) 0 5px, color-mix(in srgb, var(--accent) 72%, #fff) 5px 10px);
+}
+/* 目標刻度：跨出進度條上下的細線 */
+.kpi__tick {
+  position: absolute;
+  left: var(--base);
+  top: -4px;
+  bottom: -4px;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--ink);
+  border-radius: 1px;
+}
+.kpi__legend {
+  margin: 4px 0 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
+.kpi__legend-over { color: var(--accent-text); font-weight: 500; }
 .kpi__note { margin: 0; font-size: 12.5px; color: var(--ink-3); line-height: 1.7; }
-.kpi__foot { margin: 20px 0 0; text-align: center; font-size: 12.5px; color: var(--ink-3); }
 
 @media (max-width: 1080px) { .kpi { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 700px) {

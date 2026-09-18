@@ -526,6 +526,30 @@ export const testimonials: Testimonial[] = [
     year: '114',
   },
   {
+    id: "t-club-01",
+    type: "club",
+    dept: { zh: "中文系", en: "Department of Chinese Literature" },
+    grade: { zh: "二、三年級", en: "Second and third year" },
+    name: { zh: "系學會同學", en: "Student association members" },
+    content: {
+      zh: ["系學會活動指導老師均知情並會適時給予建議。經常會詳細的討論活動企劃，有活動辦理上的相關問題，老師會給予我們歷屆經驗及主動提供支援和討論管道。"],
+      en: ["Our faculty adviser knows about all of the association's activities and offers suggestions at the right moments. We often go through our event plans in detail together, and whenever questions come up in running an event, she shares the experience of previous years and actively offers support and ways to talk things through."],
+    },
+    year: '114',
+  },
+  {
+    id: "t-club-02",
+    type: "club",
+    dept: { zh: "大氣系", en: "Department of Atmospheric Sciences" },
+    grade: { zh: "二、三年級", en: "Second and third year" },
+    name: { zh: "系學會同學", en: "Student association members" },
+    content: {
+      zh: ["系學會活動指導老師均知情並會適時給予建議。當活動較具風險性時，老師會詳細與我們討論；老師會主動與我們溝通活動內容和經費，並提供協助，很支持我們辦各種類型的活動。"],
+      en: ["Our faculty adviser knows about all of the association's activities and offers suggestions at the right moments. When an event carries more risk, the adviser talks it through with us in detail; the adviser also reaches out to discuss event content and budgets, offers help, and strongly supports us in running all kinds of activities."],
+    },
+    year: '114',
+  },
+  {
     id: "t-sports-01",
     type: "sports",
     dept: { zh: "教學評量回饋", en: "Course evaluation feedback" },

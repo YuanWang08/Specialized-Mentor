@@ -15,7 +15,10 @@ export const site = {
 
 export interface NavItem {
   key: string
-  to: string
+  /** 站內路徑 */
+  to?: string
+  /** 站外網址（另開新視窗）；與 to 擇一 */
+  href?: string
   children?: { key: string; to: string }[]
 }
 
@@ -38,7 +41,8 @@ export const nav: NavItem[] = [
   { key: 'outstanding', to: '/outstanding' },
   { key: 'books', to: '/books' },
   { key: 'gallery', to: '/gallery' },
-  { key: 'system', to: '/system' },
+  // 原本的 /system 頁已停用（檔案改名為 pages/-system.vue 保留），改連到諮商中心的導師專區
+  { key: 'system', href: 'https://love.adm.ncu.edu.tw/NCU_counsel/mentorship-system' },
 ]
 
 /**

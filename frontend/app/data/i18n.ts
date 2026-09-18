@@ -43,6 +43,15 @@ export function isFallback(text: L | LP, locale: string): boolean {
  *   const { t } = useLocalized()
  *   t(mentor.dept)
  */
+/**
+ * 把「產業趨勢與職涯講座（1,771 人次）」拆成本文與括號補充，
+ * 畫面上讓括號整段不斷行，才不會出現「次）」獨自掉到下一行。
+ */
+export const splitParen = (s: string): [string, string] => {
+  const m = s.match(/^(.*?)(\s?[（(][^（()）]*[）)])$/)
+  return m ? [m[1]!, m[2]!] : [s, '']
+}
+
 export function useLocalized() {
   const { locale } = useI18n()
   return {

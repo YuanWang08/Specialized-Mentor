@@ -55,27 +55,40 @@ export const results: ResultEntry[] = [
     },
     stats: [
       {
-        value: '20',
-        unit: { zh: '場', en: 'events' },
+        value: '51',
+        unit: { zh: '位', en: 'mentors' },
+        label: { zh: '職涯導師', en: 'career mentors' },
+      },
+      {
+        value: '163',
+        unit: { zh: '場', en: 'sessions' },
         label: {
-          zh: '產業趨勢與職涯講座（1,188 人次）',
-          en: 'industry and career talks (1,188 attendances)',
+          zh: '職涯諮詢（175 人次）',
+          en: 'career consultations (175 attendances)',
         },
       },
       {
-        value: '7',
+        value: '38',
         unit: { zh: '場', en: 'events' },
         label: {
-          zh: '企業參訪及實務工作坊（205 人次）',
-          en: 'company visits and practical workshops (205 attendances)',
+          zh: '產業趨勢與職涯講座（1,771 人次）',
+          en: 'industry and career talks (1,771 attendances)',
+        },
+      },
+      {
+        value: '5',
+        unit: { zh: '場', en: 'events' },
+        label: {
+          zh: '企業參訪與實務工作坊（147 人次）',
+          en: 'company visits and practical workshops (147 attendances)',
         },
       },
       {
         value: '2',
         unit: { zh: '場', en: 'events' },
         label: {
-          zh: '履歷健診及模擬面試（80 人次）',
-          en: 'résumé reviews and mock interviews (80 attendances)',
+          zh: '職涯測評與履歷健診（70 人次）',
+          en: 'career assessments and résumé reviews (70 attendances)',
         },
       },
     ],
@@ -239,12 +252,26 @@ export const kpiIntro: L = {
   en: 'The five mentoring programs together raise students’ capabilities across career, service, daily life and health. Every target was exceeded.',
 }
 
-export const kpis: { type: MentorTypeId; label: L; value: L; rate: number; note: L }[] = [
+/**
+ * target／over 由數值與達成率反推（例：36 場 ÷ 120% ＝ 30 場），教務處原始資料只給達成率。
+ * 上線前請與原始資料核對目標值。
+ */
+export const kpis: {
+  type: MentorTypeId
+  label: L
+  value: L
+  rate: number
+  target: L
+  over: L
+  note: L
+}[] = [
   {
     type: 'career',
     label: { zh: '職涯增能體驗活動', en: 'Career skills and experience activities' },
     value: { zh: '36 場', en: '36 events' },
     rate: 120,
+    target: { zh: '30 場', en: '30 events' },
+    over: { zh: '+6 場', en: '+6 events' },
     note: {
       zh: '有效提升職涯規劃意識',
       en: 'Raised awareness of career planning',
@@ -255,6 +282,8 @@ export const kpis: { type: MentorTypeId; label: L; value: L; rate: number; note:
     label: { zh: '課程融入專業社會實踐', en: 'Courses embedding professional community service' },
     value: { zh: '95%', en: '95%' },
     rate: 106,
+    target: { zh: '90%', en: '90%' },
+    over: { zh: '+5 個百分點', en: '+5 points' },
     note: {
       zh: '目標 90%，落實「做中學」核心理念',
       en: 'Target 90%; realising the principle of learning by doing',
@@ -265,6 +294,8 @@ export const kpis: { type: MentorTypeId; label: L; value: L; rate: number; note:
     label: { zh: '宿舍 PBL 講座', en: 'Problem-based learning lectures in residence halls' },
     value: { zh: '28 場', en: '28 lectures' },
     rate: 186,
+    target: { zh: '15 場', en: '15 lectures' },
+    over: { zh: '+13 場', en: '+13 lectures' },
     note: {
       zh: '深化住宿生問題解決能力',
       en: "Deepened resident students' problem-solving",
@@ -275,6 +306,8 @@ export const kpis: { type: MentorTypeId; label: L; value: L; rate: number; note:
     label: { zh: '系學會輔導活動', en: 'Student association guidance activities' },
     value: { zh: '242 場', en: '242 activities' },
     rate: 161,
+    target: { zh: '150 場', en: '150 activities' },
+    over: { zh: '+92 場', en: '+92 activities' },
     note: {
       zh: '展現學生自治與領導力',
       en: 'Student self-governance and leadership in evidence',
@@ -285,6 +318,8 @@ export const kpis: { type: MentorTypeId; label: L; value: L; rate: number; note:
     label: { zh: '校園運動參與人次', en: 'Attendance at campus sport' },
     value: { zh: '6,000+', en: '6,000+' },
     rate: 150,
+    target: { zh: '4,000 人次', en: '4,000' },
+    over: { zh: '+2,000 人次', en: '+2,000' },
     note: {
       zh: '校園運動風氣顯著提升',
       en: 'A marked lift in the culture of sport on campus',

@@ -56,7 +56,7 @@ export const mentorTypes: MentorType[] = [
     name: { zh: '職涯導師', en: 'Career Mentors' },
     short: { zh: '職涯', en: 'Career' },
     tagline: {
-      zh: '陪伴與探索，點亮職涯路',
+      zh: '陪伴與探索點亮職涯路',
       en: 'Company and exploration, lighting the way to a career',
     },
     intro: {
@@ -64,8 +64,8 @@ export const mentorTypes: MentorType[] = [
       en: 'A diverse group of mentors from across departments offers career counselling and organises career guidance activities, helping students discover their strengths, widen their horizons, and build the skills to step into the workplace.',
     },
     detail: {
-      zh: '「職涯導師」推動各系所建立職涯輔導特色與策略，使教學方針、職涯重點、產業人才三者相互銜接。中央大學各系所皆設有職涯導師，主要任務包含職涯諮詢、實習輔導、職輔活動等，學生每年平均諮詢達到 80～120 人次。職輔活動方面，與職涯發展中心合作安排講座、參訪、測評、履歷健診、模擬面試等活動，平均每年約 50～70 場，每年累計參加人次約 2,300 人。透過師生對談與互動，幫助莘莘學子建立學習目標、提升學習動力。',
-      en: 'Career mentors help each department develop its own approach to career guidance, so that teaching, career priorities and industry needs line up with one another. Every NCU department has a career mentor whose work includes career counselling, internship guidance and career activities; students take up between 80 and 120 counselling sessions a year on average. Working with the Career Development Center, mentors arrange lectures, company visits, assessments, résumé reviews and mock interviews — some 50 to 70 events a year, drawing around 2,300 attendances. Through these conversations, students set clearer goals and find the motivation to pursue them.',
+      zh: '本校推動「職涯導師」制度，旨在協助系所依其特色規劃職輔策略，串聯教學目標、職涯發展及產業人才培育需求。導師的核心任務涵蓋職涯諮詢、規劃職涯輔導活動、協助實習輔導，每年平均諮詢量達 150 人次。在活動推動方面，導師與職涯發展中心合作安排講座、參訪、測評、履歷健診、模擬面試等活動，每年累計近百場、逾 2,000 人次參與。藉由師生對談及產業互動，幫助青年學子建立學習目標、提升學習動力。',
+      en: 'NCU\'s career mentor system helps each department plan career guidance around its own strengths, linking teaching goals, career development and the talent industry needs. Mentors\' core work covers career counselling, planning career guidance activities and supporting internships, with around 150 consultations a year on average. Working with the Career Development Center, mentors arrange talks, company visits, assessments, résumé reviews and mock interviews — close to a hundred events a year, drawing more than 2,000 attendances. Through conversation between teachers and students and contact with industry, young people set learning goals and find fresh motivation to learn.',
     },
     color: 'var(--c-career)',
     colorText: 'var(--c-career-text)',
@@ -75,7 +75,7 @@ export const mentorTypes: MentorType[] = [
       href: 'https://consulting.careercenter.ncu.edu.tw/',
     },
     highlight: {
-      value: '1,473',
+      value: '1,988',
       unit: { zh: '人次', en: 'attendances' },
       label: { zh: '職涯活動參與', en: 'at career activities' },
     },
@@ -146,8 +146,8 @@ export const mentorTypes: MentorType[] = [
       en: 'Led by teachers from the Physical Education Office, these mentors cultivate regular exercise and a spirit of teamwork, weaving sport into everyday life so that students can plan for a lifetime of activity, and encouraging them to volunteer and to develop the knowledge of a trained sports volunteer.',
     },
     detail: {
-      zh: '體育包含了每個人身體和心理健康狀態的面向，「體育導師」培養學生從事規律運動和團隊合作精神，將運動精神和習慣融入日常生活中，提高學生日後對於終身運動生涯規劃能力。近年來，中央大學在體育賽事表現成績亮眼，榮獲大專校院排球聯賽一般女生組第二名、籃球聯賽公開女子組第二級第五名、全國大專校院運動會羽球團體錦標一般女生組第五名、游泳團體錦標一般男生組第六名等。',
-      en: 'Physical education concerns both bodily and mental wellbeing. Physical education mentors cultivate regular exercise and a spirit of teamwork, weaving sport into everyday life so that students can plan for a lifetime of activity. NCU has performed strongly in recent competition, taking second place in the women\'s general division of the University Volleyball League, fifth in Division II of the women\'s open basketball league, fifth in the women\'s general division badminton team event at the National Intercollegiate Athletic Games, and sixth in the men\'s general division swimming team event.',
+      zh: '體育包含了每個人身體和心理健康狀態的面向，「體育導師」培養學生從事規律運動和團隊合作精神，將運動精神和習慣融入日常生活中，提高學生日後對於終身運動生涯規劃能力。近年來，中央大學在體育賽事表現成績亮眼。',
+      en: 'Physical education concerns both bodily and mental wellbeing. Physical education mentors cultivate regular exercise and a spirit of teamwork, weaving sport into everyday life so that students can plan for a lifetime of activity. NCU has performed strongly in competition in recent years.',
     },
     color: 'var(--c-sports)',
     colorText: 'var(--c-sports-text)',

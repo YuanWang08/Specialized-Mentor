@@ -8,7 +8,7 @@ import { outstanding } from './app/data/outstanding'
  */
 const staticPaths = [
   '/', '/about', '/mentors', '/results', '/outstanding',
-  '/books', '/gallery', '/system', '/voices', '/sitemap', '/accessibility',
+  '/books', '/gallery', '/voices', '/sitemap', '/accessibility',
   // 404 做成真的頁面來預先產生，建置後再複製成 404.html（見 scripts/finalize-static.mjs）
   '/404',
 ]

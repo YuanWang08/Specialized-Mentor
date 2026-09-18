@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { mentorTypes, typeMap } from '~/data/mentorTypes'
-import { systemChapters } from '~/data/system'
+import { mentorTypes } from '~/data/mentorTypes'
+import { nav } from '~/data/site'
 import { outstanding } from '~/data/outstanding'
 import { resultsYear } from '~/data/results'
 import { useLocalized } from '~/data/i18n'
@@ -56,9 +56,10 @@ const groups = computed(() => [
   },
   {
     title: t('nav.system'),
-    to: '/system',
+    to: '',
+    href: nav.find((n) => n.key === 'system')?.href,
     desc: t('sitemap.systemDesc'),
-    children: systemChapters.map((c) => ({ label: tc(typeMap[c.type].name), to: `/system#${c.type}` })),
+    children: [],
   },
   { title: t('nav.voices'), to: '/voices', desc: t('sitemap.voicesDesc'), children: [] },
   {
@@ -95,8 +96,13 @@ const groups = computed(() => [
             <h2><NuxtLink :to="localePath('/')">{{ t('nav.home') }}</NuxtLink></h2>
             <p>{{ t('sitemap.homeDesc') }}</p>
           </li>
-          <li v-for="g in groups" :key="g.to" class="map__group">
-            <h2><NuxtLink :to="localePath(g.to)">{{ g.title }}</NuxtLink></h2>
+          <li v-for="g in groups" :key="g.title" class="map__group">
+            <h2>
+              <a v-if="g.href" :href="g.href" target="_blank" rel="noopener">
+                {{ g.title }}<span class="sr-only">{{ t('common.newWindow') }}</span>
+              </a>
+              <NuxtLink v-else :to="localePath(g.to)">{{ g.title }}</NuxtLink>
+            </h2>
             <p>{{ g.desc }}</p>
             <ul v-if="g.children.length" class="map__sub">
               <li v-for="c in g.children" :key="c.to">

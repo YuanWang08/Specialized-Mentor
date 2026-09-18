@@ -50,7 +50,7 @@ export const outstanding: Outstanding[] = [
   {
     id: 'song-yuwen',
     name: { zh: '宋玉雯', en: 'Sung Yu-wen' },
-    rank: { zh: '助理教授', en: 'Assistant Professor' },
+    rank: { zh: '副教授', en: 'Associate Professor' },
     dept: { zh: '中國文學系', en: 'Department of Chinese Literature' },
     type: 'career',
     motto: {
@@ -59,10 +59,12 @@ export const outstanding: Outstanding[] = [
     },
     reflection: {
       zh: [
-        '除個別諮詢外，老師精心規劃多元且具深度的系列演講，涵蓋影視公關、出版思維、藝術產業與勞工權益等領域。引導學生從人文學科跨域，體會職涯並無標準模板，成功在於逐步建立理解他人與連結世界的能力；同時透過勞權講座剖析當前職場現況，帶領學生掌握非典型勞動下的權益保障與多元發展可能性。',
+        '除了平時的個別諮詢，考量學生未來發展，為其規劃了一系列多元且具深度的講座，主題橫跨影視公關、出版思維、藝術產業到勞工權益。',
+        '職涯從來就沒有標準模板，尤其對人文領域的同學來說，真正的核心價值在於踏出舒適圈，逐步建立理解他人、連結世界的能力。同時，我也希望透過勞權講座，帶大家看清現在的職場樣貌。在越來越多非典型勞動的趨勢下，學會如何保護自己的合法權益，才能走得更踏實，在多元的道路上無所畏懼地發揮所長。',
       ],
       en: [
-        'Alongside one-to-one counselling, Professor Sung has built a careful series of in-depth talks spanning film and media public relations, publishing, the arts industries and labour rights. She guides humanities students across disciplinary lines to see that there is no standard template for a career: what matters is the slowly built capacity to understand other people and to connect with the world. Her sessions on labour rights examine the present state of the workplace, helping students grasp both the protections available under non-standard employment and the range of paths open to them.',
+        'Alongside regular one-to-one counselling, and with students\' future paths in mind, I planned a series of varied, in-depth talks spanning film and media public relations, publishing, the arts industries and labour rights.',
+        'There has never been a standard template for a career. For students in the humanities especially, what really matters is stepping out of their comfort zone and gradually building the ability to understand others and connect with the world. Through the talks on labour rights, I also wanted to show everyone what today\'s workplace really looks like. As non-standard employment becomes more common, knowing how to protect your legal rights lets you walk more steadily — and use your strengths without fear on whichever path you choose.',
       ],
     },
     photo: '/images/mentors/song-yuwen.jpg',
@@ -79,12 +81,12 @@ export const outstanding: Outstanding[] = [
     },
     reflection: {
       zh: [
-        '老師提供了近 60 場的個別職涯諮詢，諮詢過程中能依學生個別需求提供適切引導，協助學生釐清生涯方向，並鼓勵參與實務專題、競賽及研究計畫，提升職場競爭力。',
-        '老師也在密集諮詢中體會學生對於科技快速更迭的焦慮，故結合自身產業經驗與專業人脈，規劃辦理高品質職涯講座，邀請業界專家分享先進科技與產業發展趨勢，協助學生拓展職涯視野與了解產業需求。',
+        '這個學年度完成了近 60 場的一對一職涯諮詢。每一次的對話，都希望能依個人的特質與需求，幫助梳理出屬於自己的方向，也鼓勵大家多透過實務專題、競賽或研究計畫，厚植自身專業能力。',
+        '在這些密集的深談中，能深刻感受到大家面對科技快速變革時的徬徨與焦慮。因此，我結合了自己的產業經驗與人脈，用心規劃了一系列職涯講座，邀請第一線的業界專家走進校園，為大家拆解最新科技與產業趨勢。我希望透過這些交流，幫大家打開更廣闊的視野，清楚看見市場的真正需求，在變動的時代裡找到前行的方向與信心。',
       ],
       en: [
-        'Professor Kung has held close to 60 individual career counselling sessions, tailoring his guidance to what each student needs, helping them clarify the direction they want to take, and encouraging them into hands-on projects, competitions and research work that strengthen their standing in the job market.',
-        'Through that intensive counselling he came to understand how anxious students feel about the pace at which technology turns over. Drawing on his own industry experience and professional network, he organised a series of high-quality career talks, inviting specialists from industry to speak on emerging technologies and where their sectors are heading, so that students could widen their view and understand what industry is actually looking for.',
+        'This academic year I held close to 60 one-to-one career consultations. In each conversation I tried to help students work out a direction of their own, based on who they are and what they need, and encouraged them to build their expertise through hands-on projects, competitions and research.',
+        'Over those many in-depth conversations I could feel how uncertain and anxious students are about the pace of technological change. So I drew on my own industry experience and network to plan a series of career talks, inviting front-line industry specialists onto campus to unpack the latest technologies and industry trends. Through these exchanges I hope to open up a wider view, help students see clearly what the market really needs, and find the direction and confidence to move forward in changing times.',
       ],
     },
     photo: '/images/mentors/gong-cunxiong.jpg',
@@ -127,7 +129,14 @@ export const outstanding: Outstanding[] = [
       zh: '用良善關懷社會，以熱情服務他人。',
       en: 'Care for society with kindness; serve others with warmth.',
     },
-    reflection: null,
+    reflection: {
+      zh: [
+        '很高興跟同學們在人文關懷及社會服務的路上一起成長，用良善的心關懷社會，用熱情喜悅的行動服務社會，用樂觀積極的態度參與社會。',
+      ],
+      en: [
+        'I am glad to grow together with my students on the path of humanistic care and community service — caring for society with a kind heart, serving it with warmth and joy, and taking part in it with an optimistic, positive attitude.',
+      ],
+    },
     photo: '/images/mentors/chen-xiuqi.jpg',
   },
   {
@@ -140,7 +149,14 @@ export const outstanding: Outstanding[] = [
       zh: '讓專業走入真實，為社會帶來改變。',
       en: 'Let expertise meet the real world, and change something for the better.',
     },
-    reflection: null,
+    reflection: {
+      zh: [
+        '知識的價值不在於擁有多少，而在於能為社會帶來多少改變；走入真實場域，才能讓專業發揮最大的意義。',
+      ],
+      en: [
+        'The value of knowledge lies not in how much of it we hold, but in how much change it can bring to society. Only by stepping into real settings can expertise find its fullest meaning.',
+      ],
+    },
     photo: '/images/mentors/cai-xizheng.jpg',
   },
   {
@@ -153,7 +169,14 @@ export const outstanding: Outstanding[] = [
       zh: '在服務中學習，理解彼此、看見他人。',
       en: 'Learn through service: understand one another, and truly see other people.',
     },
-    reflection: null,
+    reflection: {
+      zh: [
+        '對我來說，於服務中學習，是從仔細聆聽與誠懇對視的過程中，慢慢懂得什麼是「互為主體」。',
+      ],
+      en: [
+        'For me, learning through service means coming, slowly, to understand what it is to meet one another as equal subjects — through listening carefully and looking each other honestly in the eye.',
+      ],
+    },
     photo: '/images/mentors/wu-xinyi.jpg',
   },
   {
@@ -166,7 +189,16 @@ export const outstanding: Outstanding[] = [
       zh: '人生苦短，想做的事就勇敢去做。',
       en: 'Life is short. If you want to do it, do it.',
     },
-    reflection: null,
+    reflection: {
+      zh: [
+        '人生很長，沒什麼事過不去；但人生也很短，想做什麼事就快去做。',
+        '事可大可小，因為人生不長也不短。',
+      ],
+      en: [
+        'Life is long, and there is nothing you cannot get through; but life is also short, so whatever you want to do, go and do it now.',
+        'Things can be as big or as small as you make them, because life is neither long nor short.',
+      ],
+    },
     photo: '/images/mentors/zheng-yangyi.jpg',
   },
   {

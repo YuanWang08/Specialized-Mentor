@@ -73,7 +73,7 @@ const next = computed(() => outstanding[(idx.value + 1) % outstanding.length])
             <AppIcon name="quote" :size="24" />
             <p>{{ tc(mentor.motto) }}</p>
           </blockquote>
-          <NuxtLink :to="localePath(`/mentors/${mentor.type}`)" class="btn btn--ghost">
+          <NuxtLink :to="localePath(`/mentors/${mentor.type}`) + '#about'" class="btn btn--ghost">
             {{ t('mentors.meet', { name: tc(type.name) }) }}
             <AppIcon name="arrow" :size="12" class="btn__arrow" />
           </NuxtLink>
@@ -104,7 +104,7 @@ const next = computed(() => outstanding[(idx.value + 1) % outstanding.length])
     <section v-if="siblings.length" class="section section--white">
       <div class="wrap">
         <SectionHeading :title="t('outstanding.siblings', { name: tc(type.name) })" />
-        <ul class="grid-4">
+        <ul class="sibs">
           <li v-for="s in siblings" :key="s.id"><MentorCard :mentor="s" /></li>
         </ul>
       </div>
@@ -212,7 +212,9 @@ const next = computed(() => outstanding[(idx.value + 1) % outstanding.length])
   margin-bottom: 1.3em;
 }
 
-.grid-4 { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+/* 其他傑出導師：張數常不滿一列，改用 flex 置中，與上方置中的標題對齊 */
+.sibs { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.sibs > li { width: calc((100% - 3 * 20px) / 4); }
 
 .pager { border-top: 1px solid var(--line); background: var(--cream-2); }
 .pager__inner {
@@ -231,20 +233,14 @@ const next = computed(() => outstanding[(idx.value + 1) % outstanding.length])
 @media (max-width: 860px) {
   .top__inner { grid-template-columns: 1fr; gap: 24px; padding-block: 32px; }
   .top__photo { max-width: 220px; }
-  .grid-4 { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .sibs { gap: 14px; }
+  .sibs > li { width: calc((100% - 14px) / 2); }
   .pager__all { display: none; }
-}
-/* 雙欄時項目數為奇數：最後一個置中 */
-@media (min-width: 431px) and (max-width: 860px) {
-  .grid-4 > li:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: calc((100% - 14px) / 2);
-  }
 }
 
 /* 英文卡片在 2 欄下會過窄，最窄的螢幕改單欄 */
 @media (max-width: 430px) {
   .grid-5, .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .sibs > li { width: 100%; }
 }
 </style>

@@ -41,8 +41,9 @@ const isActive = (to: string) => (to === '/' ? bare.value === '/' : bare.value.s
           </svg>
         </span>
         <span class="brand__text">
-          <strong>{{ t('site.name') }}</strong>
-          <small>{{ t('site.tagline') }}</small>
+          <!-- 校名在上、站名在下，合起來讀作完整站名 -->
+          <small>{{ t('site.org') }}</small>
+          <strong>{{ t('site.short') }}</strong>
         </span>
       </NuxtLink>
 
@@ -63,13 +64,18 @@ const isActive = (to: string) => (to === '/' ? bare.value === '/' : bare.value.s
       <nav id="site-nav" class="nav" :class="{ 'nav--open': open }" :aria-label="t('nav.menu')">
         <a id="U" accesskey="U" href="#U" class="sr-only">{{ t('nav.landmarkTop') }}</a>
         <ul class="nav__list">
-          <li v-for="item in nav" :key="item.to" class="nav__item"
+          <li v-for="item in nav" :key="item.key" class="nav__item"
             :class="{ 'nav__item--has-sub': item.children }">
+            <a v-if="item.href" :href="item.href" target="_blank" rel="noopener" class="nav__link">
+              {{ t(`nav.${item.key}`) }}<span class="sr-only">{{ t('common.newWindow') }}</span>
+              <AppIcon name="external" :size="12" class="nav__ext" />
+            </a>
             <NuxtLink
-              :to="localePath(item.to)"
+              v-else
+              :to="localePath(item.to!)"
               class="nav__link"
-              :class="{ 'nav__link--active': isActive(item.to) }"
-              :aria-current="isActive(item.to) ? 'page' : undefined"
+              :class="{ 'nav__link--active': isActive(item.to!) }"
+              :aria-current="isActive(item.to!) ? 'page' : undefined"
             >
               {{ t(`nav.${item.key}`) }}
               <AppIcon v-if="item.children" name="arrow" :size="13" class="nav__caret" />
@@ -120,7 +126,7 @@ const isActive = (to: string) => (to === '/' ? bare.value === '/' : bare.value.s
   font-family: var(--serif); font-size: 19px; letter-spacing: .02em;
   overflow-wrap: break-word;
 }
-.brand__text small { font-size: 12px; color: var(--ink-2); font-weight: 400; letter-spacing: .06em; }
+.brand__text small { order: -1; font-size: 12px; color: var(--ink-2); font-weight: 500; letter-spacing: .08em; }
 
 .hdr__acts { display: flex; align-items: center; gap: 10px; margin-left: auto; order: 3; }
 .hdr__toggle {
@@ -144,6 +150,7 @@ const isActive = (to: string) => (to === '/' ? bare.value === '/' : bare.value.s
   height: 2px; border-radius: 2px; background: var(--navy-600);
 }
 .nav__caret { transform: rotate(90deg); opacity: .55; }
+.nav__ext { opacity: .6; }
 
 .nav__sub {
   position: absolute; top: calc(100% + 4px); left: 0; min-width: 210px;
@@ -166,7 +173,6 @@ const isActive = (to: string) => (to === '/' ? bare.value === '/' : bare.value.s
   .nav__link { padding: 9px 8px; font-size: 14px; }
   .nav__link--active::after { left: 8px; right: 8px; }
   .brand__text strong { font-size: 17px; }
-  .brand__text small { display: none; }
 }
 
 /* 斷點兩種語言共用：英文導覽列約需 1273px，故訂在 1280px。
@@ -178,7 +184,7 @@ const isActive = (to: string) => (to === '/' ? bare.value === '/' : bare.value.s
   .hdr__lang { display: none; }
   .nav__lang { display: inline-flex; margin: 4px 12px 0; }
   .brand__text strong { font-size: 17px; }
-  .brand__text small { display: none; }
+  .brand__text small { font-size: 11.5px; }
   .nav {
     position: absolute; top: 100%; left: 0; right: 0; order: 4;
     background: #fff; border-bottom: 1px solid var(--line);

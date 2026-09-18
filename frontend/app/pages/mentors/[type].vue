@@ -4,7 +4,7 @@ import { outstandingByType } from '~/data/outstanding'
 import { publishedTestimonials } from '~/data/testimonials'
 import { photosByType, galleryTarget } from '~/data/gallery'
 import { results, resultsYear } from '~/data/results'
-import { useLocalized } from '~/data/i18n'
+import { useLocalized, splitParen } from '~/data/i18n'
 
 const route = useRoute()
 const { t } = useI18n()
@@ -58,8 +58,8 @@ const idx = computed(() => {
       <p class="lead">{{ tc(type.intro) }}</p>
     </PageHero>
 
-    <!-- 計畫說明 -->
-    <section class="section section--white">
+    <!-- 計畫說明（傑出導師個人頁的「關於○○導師」按鈕會直接跳到這裡） -->
+    <section id="about" class="section section--white about-sec">
       <div
         class="wrap two"
         :style="{ '--accent': type.color, '--accent-text': type.colorText }"
@@ -67,13 +67,28 @@ const idx = computed(() => {
         <div class="two__main">
           <h2 class="blk-title">{{ t('mentors.aboutType', { name }) }}</h2>
           <p class="blk-body">{{ tc(type.detail) }}</p>
+          <!-- 競賽榮譽（目前只有體育）：與年度成果頁共用 results.ts 的 awards -->
+          <div v-if="result?.awards" class="honors">
+            <h3 class="honors__title">
+              <AppIcon name="trophy" :size="17" /> {{ t('mentors.honorsTitle') }}
+            </h3>
+            <ul class="honors__list">
+              <li v-for="a in result.awards" :key="a.title.zh">
+                <strong>{{ tc(a.title) }}</strong>
+                <ul v-if="a.items.length > 1">
+                  <li v-for="(it, i) in a.items" :key="i">{{ tc(it) }}</li>
+                </ul>
+                <span v-else>{{ tc(a.items[0]!) }}</span>
+              </li>
+            </ul>
+          </div>
         </div>
         <aside v-if="result" class="two__side card">
           <h3>{{ t('mentors.yearResults', { year }) }}</h3>
           <ul>
             <li v-for="(s, i) in result.stats" :key="i">
               <strong>{{ s.value }}</strong><em>{{ tc(s.unit) }}</em>
-              <span>{{ tc(s.label) }}</span>
+              <span>{{ splitParen(tc(s.label))[0] }}<span class="nowrap">{{ splitParen(tc(s.label))[1] }}</span></span>
             </li>
           </ul>
           <NuxtLink :to="localePath('/results')" class="two__more">
@@ -141,6 +156,7 @@ const idx = computed(() => {
 </template>
 
 <style scoped>
+.about-sec { scroll-margin-top: 76px; }
 .lead { margin: 14px 0 0; font-size: 15.5px; line-height: 2; color: var(--ink-2); }
 
 .two { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 40px; align-items: start; }
@@ -153,6 +169,31 @@ const idx = computed(() => {
   border-left: 4px solid var(--accent);
 }
 .blk-body { font-size: 15.5px; line-height: 2.15; color: var(--ink-2); margin: 0; }
+
+.honors { margin-top: 22px; padding: 20px 22px; border-radius: var(--radius); background: var(--cream-2); }
+.honors__title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 12px;
+  font-size: 15.5px;
+  color: var(--accent-text);
+}
+.honors__list { list-style: none; display: grid; gap: 12px; }
+.honors__list > li { display: grid; gap: 2px; font-size: 14.5px; line-height: 1.85; color: var(--ink-2); }
+.honors__list strong { font-weight: 500; color: var(--navy-800); }
+.honors__list ul { list-style: none; display: grid; gap: 2px; }
+.honors__list ul li { position: relative; padding-left: 15px; }
+.honors__list ul li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.8em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
 
 .two__side { padding: 22px 24px; }
 .two__side h3 { font-size: 15px; color: var(--navy-800); margin-bottom: 14px; }

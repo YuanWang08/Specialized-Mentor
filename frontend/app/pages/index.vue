@@ -13,7 +13,7 @@ const { t: tc } = useLocalized()
 const localePath = useLocalePath()
 
 // 首頁標題直接用站名，不套 titleTemplate
-useHead({ title: null, titleTemplate: () => `${t('site.name')}｜${t('site.org')}` })
+useHead({ title: null, titleTemplate: () => t('site.name') })
 
 const featuredMentors = computed(() => outstanding.filter((m) => m.photo).slice(0, 8))
 /**
@@ -44,7 +44,10 @@ const year = computed(() => tc(resultsYear))
     <section class="hero">
       <div class="wrap hero__inner">
         <div class="hero__text">
-          <h1 class="hero__title">{{ tc(site.heroTitle) }}</h1>
+          <h1 class="hero__title">
+            <span class="hero__org">{{ t('site.org') }}</span>
+            {{ tc(site.heroTitle) }}
+          </h1>
           <p class="hero__lead">{{ tc(site.heroLead) }}</p>
           <NuxtLink :to="localePath('/about')" class="btn btn--solid">
             {{ t('home.heroCta') }} <AppIcon name="arrow" :size="13" class="btn__arrow" />
@@ -231,6 +234,16 @@ const year = computed(() => tc(resultsYear))
   gap: 44px;
   align-items: center;
   padding-block: 62px 66px;
+}
+.hero__org {
+  display: block;
+  margin-bottom: 10px;
+  font-family: var(--sans);
+  font-size: clamp(15px, 1.6vw, 18px);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--navy-600);
+  white-space: normal;
 }
 .hero__title {
   font-family: var(--serif);

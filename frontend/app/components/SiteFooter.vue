@@ -27,8 +27,11 @@ const utilityLinks = [
       <nav class="ftr__col" :aria-label="t('footer.navLabel')">
         <h2>{{ t('footer.sitemap') }}</h2>
         <ul>
-          <li v-for="item in nav.slice(1)" :key="item.to">
-            <NuxtLink :to="localePath(item.to)">{{ t(`nav.${item.key}`) }}</NuxtLink>
+          <li v-for="item in nav.slice(1)" :key="item.key">
+            <a v-if="item.href" :href="item.href" target="_blank" rel="noopener">
+              {{ t(`nav.${item.key}`) }}<span class="sr-only">{{ t('common.newWindow') }}</span>
+            </a>
+            <NuxtLink v-else :to="localePath(item.to!)">{{ t(`nav.${item.key}`) }}</NuxtLink>
           </li>
         </ul>
       </nav>

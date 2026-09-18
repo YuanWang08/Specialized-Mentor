@@ -1,9 +1,10 @@
 {
   "site": {
-    "name": "Specialized Mentoring Programs",
+    "name": "NCU Specialized Mentoring Programs",
     "tagline": "Many kinds of support, one shared purpose",
     "org": "National Central University",
-    "backHome": "Back to home: Specialized Mentoring Programs"
+    "backHome": "Back to home: NCU Specialized Mentoring Programs",
+    "short": "Specialized Mentoring Programs"
   },
   "nav": {
     "home": "Home",
@@ -103,7 +104,8 @@
     "readAllVoices": "Read all reflections",
     "outstandingTitle": "Outstanding {name}, {year}",
     "unitSite": "Visit the unit website",
-    "unitSiteOf": ": office responsible for {name}"
+    "unitSiteOf": ": office responsible for {name}",
+    "honorsTitle": "Varsity honours in external competition"
   },
   "results": {
     "eyebrow": "RESULTS",
@@ -114,8 +116,9 @@
     "kpiTitle": "Higher Education Sprout Project Results, 2025 – May 2026",
     "kpiSub": "Period: {period} (compiled by the Office of Academic Affairs)",
     "kpiRate": "{n}% of target",
-    "kpiBarLabel": "{n}% of target",
-    "kpiFoot": "Bars are drawn with 200% attainment as a full bar."
+    "kpiBarLabel": "Target {target}, actual {value}, {n}% of target",
+    "kpiTarget": "Target {v}",
+    "kpiOver": "Over by {v}"
   },
   "outstanding": {
     "eyebrow": "OUTSTANDING MENTORS",
@@ -123,9 +126,9 @@
     "lead": "{n} outstanding mentors this academic year, drawn from all five mentoring programs.",
     "listHeading": "List of outstanding mentors",
     "filterLabel": "Filter outstanding mentors by program",
-    "readReflection": "Read reflection",
+    "readReflection": "Mentoring reflection",
     "viewProfile": "View profile",
-    "readReflectionOf": "Read the mentoring reflection of {rank} {name}",
+    "readReflectionOf": "Mentoring reflection by {rank} {name}",
     "viewProfileOf": "View the profile of {rank} {name}",
     "ctaTitle": "Student Voices",
     "ctaBody": "What students say about being mentored, collected on the Student Voices page.",
@@ -199,7 +202,7 @@
     "accessibilityDesc": "How this site is designed for accessibility, and how to navigate it by keyboard.",
     "typeResults": "{name} results",
     "typeGallery": "{name} gallery",
-    "systemDesc": "How NCU's specialized mentoring system began, and what each of the five kinds of mentor does."
+    "systemDesc": "The mentor section of the Counseling Center website (opens in a new window)."
   },
   "system": {
     "originTitle": "How It Began",

@@ -1,3 +1,11 @@
+<!--
+  【已停用】中大導師制度頁（原路由 /system）
+  2026-09-18 依主管指示，導覽列的「中大導師制度」改連到諮商中心網站的導師專區：
+  https://love.adm.ncu.edu.tw/NCU_counsel/mentorship-system
+  Nuxt 不會為 pages/ 底下以「-」開頭的檔案產生路由，所以這個檔案目前不會出現在網站上。
+  要恢復時：把檔名改回 system.vue、nuxt.config.ts 的 staticPaths 加回 '/system'、
+  app/data/site.ts 的 nav 改回 { key: 'system', to: '/system' }。
+-->
 <script setup lang="ts">
 import { typeMap } from '~/data/mentorTypes'
 import {

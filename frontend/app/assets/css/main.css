@@ -60,7 +60,8 @@ img { max-width: 100%; height: auto; display: block; }
 a { color: var(--navy-700); text-decoration: none; }
 a:hover { color: var(--navy-600); }
 h1, h2, h3, h4 { line-height: 1.4; margin: 0; font-weight: 700; }
-p { margin: 0 0 1em; }
+/* text-wrap: pretty 讓瀏覽器避免段落最後一行只剩一兩個字 */
+p { margin: 0 0 1em; text-wrap: pretty; }
 ul, ol { margin: 0; padding: 0; }
 
 :focus-visible { outline: 3px solid var(--navy-600); outline-offset: 2px; border-radius: 4px; }
@@ -161,6 +162,12 @@ ul, ol { margin: 0; padding: 0; }
 p, li, dt, dd, h1, h2, h3, h4, blockquote, figcaption, .card, .chip {
   overflow-wrap: break-word;
 }
+/* 避免最後一行只剩一兩個字（例如「（147 人次）」斷成「次）」獨自一行）。
+   數據卡的說明文字是 span，也一併套用。 */
+li, dd, blockquote, figcaption,
+.rcard__cap, .stats__cap, .two__side span, .row__stat small {
+  text-wrap: pretty;
+}
 
 /* ===== 心得卡片的逐列對齊（subgrid）=====
    每張卡片有三段：引號圖示／內文／系所資訊。用 subgrid 讓同一「列」的卡片共用這三段的列高：
@@ -174,6 +181,9 @@ p, li, dt, dd, h1, h2, h3, h4, blockquote, figcaption, .card, .chip {
   row-gap: 12px;
 }
 .quote-grid > li > .tq > .tq__body { align-self: start; }
+
+/* 括號補充整段不斷行（見 app/data/i18n.ts 的 splitParen） */
+.nowrap { white-space: nowrap; }
 
 /* ===== 螢幕閱讀器專用文字 ===== */
 .sr-only {

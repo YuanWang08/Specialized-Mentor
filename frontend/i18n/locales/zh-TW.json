@@ -1,9 +1,10 @@
 {
   "site": {
-    "name": "多元專項輔導導師成果網",
+    "name": "國立中央大學多元專項輔導導師成果網",
     "tagline": "陪伴學生成長的多元力量",
     "org": "國立中央大學",
-    "backHome": "回到首頁：多元專項輔導導師成果網"
+    "backHome": "回到首頁：國立中央大學多元專項輔導導師成果網",
+    "short": "多元專項輔導導師成果網"
   },
   "nav": {
     "home": "首頁",
@@ -96,14 +97,15 @@
     "yearResults": "{year}成果",
     "fullResults": "完整年度成果",
     "othersTitle": "其他專項導師",
-    "meet": "認識{name}",
+    "meet": "關於{name}",
     "noVoices": "{name}的學生心得回饋尚未提供，資料補齊後將於此顯示。",
     "noPhotos": "{name}的活動花絮照片尚未提供（預計 {n} 張）。",
     "partialPhotos": "目前 {n} 張，尚待補齊至 {target} 張。",
     "readAllVoices": "閱讀全部心得",
     "outstandingTitle": "{year}傑出{name}",
     "unitSite": "前往單位網站",
-    "unitSiteOf": "：{name}負責單位"
+    "unitSiteOf": "：{name}負責單位",
+    "honorsTitle": "運動代表隊於校外競賽榮獲"
   },
   "results": {
     "eyebrow": "RESULTS",
@@ -114,8 +116,9 @@
     "kpiTitle": "114-115/5深耕成果",
     "kpiSub": "統計期間：{period}（教務處統籌）",
     "kpiRate": "達成率 {n}%",
-    "kpiBarLabel": "達成率 {n}%",
-    "kpiFoot": "進度條以達成率 200% 為滿格繪製。"
+    "kpiBarLabel": "目標 {target}，實際 {value}，達成率 {n}%",
+    "kpiTarget": "目標 {v}",
+    "kpiOver": "超額 {v}"
   },
   "outstanding": {
     "eyebrow": "OUTSTANDING MENTORS",
@@ -123,9 +126,9 @@
     "lead": "本學年共 {n} 位傑出專項導師，來自五類專項輔導領域。",
     "listHeading": "傑出導師列表",
     "filterLabel": "依導師類別篩選傑出導師",
-    "readReflection": "閱讀心得",
+    "readReflection": "輔導心得",
     "viewProfile": "查看介紹",
-    "readReflectionOf": "閱讀{name}{rank}的輔導心得",
+    "readReflectionOf": "{name}{rank}的輔導心得",
     "viewProfileOf": "查看{name}{rank}的介紹",
     "ctaTitle": "學生心得回饋",
     "ctaBody": "同學們對專項導師陪伴的真實回饋，收錄於「學生心得」專頁。",
@@ -199,7 +202,7 @@
     "accessibilityDesc": "本網站的無障礙設計說明與鍵盤操作方式。",
     "typeResults": "{name}成果",
     "typeGallery": "{name}花絮",
-    "systemDesc": "專項輔導導師制度的緣起、五類導師的任務與輔導量能。"
+    "systemDesc": "諮商中心網站的導師專區（另開新視窗）。"
   },
   "system": {
     "originTitle": "制度緣起",

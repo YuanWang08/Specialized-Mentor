@@ -7,7 +7,7 @@ useHead(() => ({
   link: head.value.link,
   meta: head.value.meta,
   titleTemplate: (title?: string) =>
-    title ? `${title}｜${t('site.name')}` : `${t('site.name')}｜${t('site.org')}`,
+    title ? `${title}｜${t('site.name')}` : t('site.name'),
 }))
 </script>
 
