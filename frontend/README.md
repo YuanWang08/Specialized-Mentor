@@ -156,9 +156,9 @@ cp node_modules/axe-core/axe.min.js public/_axe.js
 
 英文內容是先翻好待審的版本。以下項目**需要正式名稱**，確認後直接改資料檔：
 
-- [ ] **14 位導師的英文姓名拼法** — `app/data/outstanding.ts` 的 `name.en`。
-      目前用威妥瑪式拼法（如 `Hsieh Chieh-ming`），但老師各自的護照／論文拼法可能不同，
-      應向本人確認。`Salone Ishahavut` 為布農族名的既有羅馬拼寫。
+- [x] ~~**14 位導師的英文姓名拼法**~~ 2026-09-20 改用 114 學年度「傑出專項輔導導師」
+      得獎名單上的官方拼法（如 `Gong Cihun-Siyong`、`Harn Po-Wei`、`Tsai Shyi-Jeng`），
+      名單格式為「姓, 名」，站上不加逗號。`Salone Ishahavut` 為布農族名的既有羅馬拼寫。
 - [ ] **6 本繪本的英文書名** — `app/data/books.ts` 中標有 `titleEnUnofficial: true` 的都是暫譯，
       需向中大出版中心確認。2025 年《片片絮語》的 `A Murmur of Light` 是書上既有的正式英文名。
 - [ ] **系所英文名稱** — 依中大官方英文系所名填寫，仍建議比對一次。
@@ -174,7 +174,7 @@ cp node_modules/axe-core/axe.min.js public/_axe.js
 - 格線子項統一 `min-width: 0`，`minmax()` 的下限一律寫成 `minmax(min(280px, 100%), 1fr)`
 - 類別標籤 `.chip` 不使用 `white-space: nowrap`
 - 內文元素允許 `overflow-wrap: break-word`
-- 職稱不直接接在英文姓名後（`Hsieh Chieh-ming Professor` 是錯的），改放在系所那一行，
+- 職稱不直接接在英文姓名後（`Hsieh Chieh-Ming Professor` 是錯的），改放在系所那一行，
   用 `t('common.sep')` 當分隔符號（中文全形空格／英文中點）
 
 **加新版面時請在 320px 寬度下確認不會橫向捲動**，中文看不出問題不代表英文沒問題。
@@ -333,7 +333,7 @@ npx serve .output/public        # 或任何靜態伺服器
 
 **雙語化**（英文版已完成，以下為待確認的正式名稱）
 
-- [ ] 14 位導師的英文姓名拼法、6 本繪本的英文書名（見上方「雙語化」一節）。
+- [ ] 6 本繪本的英文書名（見上方「雙語化」一節）。導師英文姓名已依得獎名單確認。
 
 **待確認（已填入但未經正式核可）**
 

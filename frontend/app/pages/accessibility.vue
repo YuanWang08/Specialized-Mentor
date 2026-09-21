@@ -100,12 +100,12 @@ const limitsTitle: L = { zh: '已知限制', en: 'Known Limitations' }
 const limits: LP = {
   zh: [
     '部分單元的照片與文字內容仍在陸續補齊，網站上會以明確的文字說明目前狀態，不會以空白或無意義的佔位符呈現。',
-    '英文版的導師姓名拼法與部分繪本書名為暫譯，正式名稱確認後將更新。',
+    '英文版的部分繪本書名為暫譯，正式名稱確認後將更新。',
     '頁尾的聯絡資訊尚待主管單位正式確認。',
   ],
   en: [
     'Photographs and text for some sections are still being collected. Where content is not yet available the site says so in words, rather than leaving a blank or a meaningless placeholder.',
-    'In the English version, the romanisation of mentors\' names and some picture book titles are provisional translations, and will be updated once the official forms are confirmed.',
+    'In the English version, some picture book titles are provisional translations, and will be updated once the official forms are confirmed.',
     'The contact details in the footer are awaiting formal confirmation from the responsible office.',
   ],
 }

@@ -103,6 +103,11 @@ export const results: ResultEntry[] = [
     },
     stats: [
       {
+        value: '56',
+        unit: { zh: '位', en: 'mentors' },
+        label: { zh: '服務學習導師', en: 'service learning mentors' },
+      },
+      {
         value: '4',
         unit: { zh: '次', en: 'meetings' },
         label: { zh: '全校導師交流會議', en: 'university-wide mentor meetings' },
@@ -127,6 +132,11 @@ export const results: ResultEntry[] = [
     },
     stats: [
       {
+        value: '27',
+        unit: { zh: '位', en: 'mentors' },
+        label: { zh: '系學會導師', en: 'student association mentors' },
+      },
+      {
         value: '200',
         unit: { zh: '場', en: 'activities' },
         label: { zh: '課外活動學習輔導', en: 'of extracurricular guidance' },
@@ -150,6 +160,11 @@ export const results: ResultEntry[] = [
       ],
     },
     stats: [
+      {
+        value: '11',
+        unit: { zh: '位', en: 'mentors' },
+        label: { zh: '體育導師', en: 'physical education mentors' },
+      },
       {
         value: '11',
         unit: { zh: '場', en: 'events' },
@@ -283,7 +298,7 @@ export const kpis: {
     value: { zh: '95%', en: '95%' },
     rate: 106,
     target: { zh: '90%', en: '90%' },
-    over: { zh: '+5 個百分點', en: '+5 points' },
+    over: { zh: '+5%', en: '+5%' },
     note: {
       zh: '目標 90%，落實「做中學」核心理念',
       en: 'Target 90%; realising the principle of learning by doing',

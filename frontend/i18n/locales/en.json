@@ -114,7 +114,7 @@
     "typePage": "Program page",
     "awards": "Competition Honours",
     "kpiTitle": "Higher Education Sprout Project Results, 2025 – May 2026",
-    "kpiSub": "Period: {period} (compiled by the Office of Academic Affairs)",
+    "kpiSub": "Period: {period}",
     "kpiRate": "{n}% of target",
     "kpiBarLabel": "Target {target}, actual {value}, {n}% of target",
     "kpiTarget": "Target {v}",

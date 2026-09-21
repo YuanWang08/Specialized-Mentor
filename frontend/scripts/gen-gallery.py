@@ -77,10 +77,10 @@ export const galleryTarget = 10
 
 # 服務學習照片資料夾名稱 → 老師姓名（中／英）
 TEACHERS = {
-    '范世榮': ('范世榮', 'Fan Shih-jung'),
-    '韓伯維': ('韓伯維', 'Han Po-wei'),
-    '蔡錫錚、吳忻怡、鄭揚宜': ('蔡錫錚、吳忻怡、鄭揚宜', 'Tsai Hsi-cheng, Wu Hsin-i and Cheng Yang-i'),
-    '陳秀琪': ('陳秀琪', 'Chen Hsiu-chi'),
+    '范世榮': ('范世榮', 'Fan Shih-Jung'),
+    '韓伯維': ('韓伯維', 'Harn Po-Wei'),
+    '蔡錫錚、吳忻怡、鄭揚宜': ('蔡錫錚、吳忻怡、鄭揚宜', 'Tsai Shyi-Jeng, Wu Hsin-Yi and Zheng Yang-Yi'),
+    '陳秀琪': ('陳秀琪', 'Chen Siu-Ki'),
     '莎瓏．伊斯哈罕布德': ('莎瓏．伊斯哈罕布德', 'Salone Ishahavut'),
 }
 

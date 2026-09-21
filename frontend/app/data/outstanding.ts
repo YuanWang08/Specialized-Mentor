@@ -3,7 +3,7 @@ import type { MentorTypeId } from './mentorTypes'
 
 export interface Outstanding {
   id: string
-  /** 英文姓名為暫譯，上線前需向各位老師確認慣用拼法 */
+  /** 英文姓名依 114 學年度「傑出專項輔導導師」得獎名單的官方拼法 */
   name: L
   rank: L
   dept: L
@@ -20,7 +20,7 @@ export interface Outstanding {
 export const outstanding: Outstanding[] = [
   {
     id: 'xie-jieming',
-    name: { zh: '謝介銘', en: 'Hsieh Chieh-ming' },
+    name: { zh: '謝介銘', en: 'Hsieh Chieh-Ming' },
     rank: { zh: '教授', en: 'Professor' },
     dept: {
       zh: '化學工程與材料工程學系',
@@ -49,7 +49,7 @@ export const outstanding: Outstanding[] = [
   },
   {
     id: 'song-yuwen',
-    name: { zh: '宋玉雯', en: 'Sung Yu-wen' },
+    name: { zh: '宋玉雯', en: 'Sung Yu-Wen' },
     rank: { zh: '副教授', en: 'Associate Professor' },
     dept: { zh: '中國文學系', en: 'Department of Chinese Literature' },
     type: 'career',
@@ -71,7 +71,7 @@ export const outstanding: Outstanding[] = [
   },
   {
     id: 'gong-cunxiong',
-    name: { zh: '龔存雄', en: 'Kung Tsun-hsiung' },
+    name: { zh: '龔存雄', en: 'Gong Cihun-Siyong' },
     rank: { zh: '副教授', en: 'Associate Professor' },
     dept: { zh: '電機工程學系', en: 'Department of Electrical Engineering' },
     type: 'career',
@@ -93,7 +93,7 @@ export const outstanding: Outstanding[] = [
   },
   {
     id: 'han-bowei',
-    name: { zh: '韓伯維', en: 'Han Po-wei' },
+    name: { zh: '韓伯維', en: 'Harn Po-Wei' },
     rank: { zh: '助理教授', en: 'Assistant Professor' },
     dept: {
       zh: '資訊工程學系',
@@ -118,7 +118,7 @@ export const outstanding: Outstanding[] = [
   },
   {
     id: 'chen-xiuqi',
-    name: { zh: '陳秀琪', en: 'Chen Hsiu-chi' },
+    name: { zh: '陳秀琪', en: 'Chen Siu-Ki' },
     rank: { zh: '教授', en: 'Professor' },
     dept: {
       zh: '客家語文暨社會科學學系',
@@ -141,7 +141,7 @@ export const outstanding: Outstanding[] = [
   },
   {
     id: 'cai-xizheng',
-    name: { zh: '蔡錫錚', en: 'Tsai Hsi-cheng' },
+    name: { zh: '蔡錫錚', en: 'Tsai Shyi-Jeng' },
     rank: { zh: '副教授', en: 'Associate Professor' },
     dept: { zh: '機械工程學系', en: 'Department of Mechanical Engineering' },
     type: 'service',
@@ -161,7 +161,7 @@ export const outstanding: Outstanding[] = [
   },
   {
     id: 'wu-xinyi',
-    name: { zh: '吳忻怡', en: 'Wu Hsin-i' },
+    name: { zh: '吳忻怡', en: 'Wu Hsin-Yi' },
     rank: { zh: '助理教授', en: 'Assistant Professor' },
     dept: { zh: '通識教育中心', en: 'Center for General Education' },
     type: 'service',
@@ -181,7 +181,7 @@ export const outstanding: Outstanding[] = [
   },
   {
     id: 'zheng-yangyi',
-    name: { zh: '鄭揚宜', en: 'Cheng Yang-i' },
+    name: { zh: '鄭揚宜', en: 'Zheng Yang-Yi' },
     rank: { zh: '助理教授', en: 'Assistant Professor' },
     dept: { zh: '通識教育中心', en: 'Center for General Education' },
     type: 'service',
@@ -203,7 +203,7 @@ export const outstanding: Outstanding[] = [
   },
   {
     id: 'fan-shirong',
-    name: { zh: '范世榮', en: 'Fan Shih-jung' },
+    name: { zh: '范世榮', en: 'Fan Shih-Jung' },
     rank: { zh: '助理教授', en: 'Assistant Professor' },
     dept: { zh: '生命科學系', en: 'Department of Life Sciences' },
     type: 'service',
@@ -247,7 +247,7 @@ export const outstanding: Outstanding[] = [
   },
   {
     id: 'li-shuping',
-    name: { zh: '李淑萍', en: 'Li Shu-ping' },
+    name: { zh: '李淑萍', en: 'Lee Shu-Ping' },
     rank: { zh: '教授', en: 'Professor' },
     dept: { zh: '中國文學系', en: 'Department of Chinese Literature' },
     type: 'club',
@@ -267,7 +267,7 @@ export const outstanding: Outstanding[] = [
   },
   {
     id: 'yang-shuzhi',
-    name: { zh: '楊舒芝', en: 'Yang Shu-chih' },
+    name: { zh: '楊舒芝', en: 'Yang Shu-Chih' },
     rank: { zh: '特聘教授', en: 'Distinguished Professor' },
     dept: { zh: '大氣科學學系', en: 'Department of Atmospheric Sciences' },
     type: 'club',
@@ -287,7 +287,7 @@ export const outstanding: Outstanding[] = [
   },
   {
     id: 'zhang-guiling',
-    name: { zh: '張桂菱', en: 'Chang Kuei-ling' },
+    name: { zh: '張桂菱', en: 'Chang Kuei-Ling' },
     rank: { zh: '助理教授', en: 'Assistant Professor' },
     dept: { zh: '體育室', en: 'Physical Education Office' },
     type: 'sports',
@@ -311,7 +311,7 @@ export const outstanding: Outstanding[] = [
   },
   {
     id: 'yu-hongqun',
-    name: { zh: '余宏群', en: 'Yu Hung-chun' },
+    name: { zh: '余宏群', en: 'Yu Hung-Chun' },
     rank: { zh: '講師', en: 'Lecturer' },
     dept: { zh: '體育室', en: 'Physical Education Office' },
     type: 'sports',
