@@ -4,9 +4,11 @@
  * 1. 把預先產生好的 /404 頁面複製成主機看得懂的 404.html。
  *    Nuxt 預設產出的 404.html 是 SPA 空殼（沒有 <title>、關掉 JS 就一片空白），
  *    改用真的有內容的版本，關閉 JS 或螢幕閱讀器也讀得到。
- * 2. 檢查產出是否完整，缺東西就讓建置失敗，而不是默默部署一份壞的。
+ * 2. 產生 sitemap.xml（含中英文對應），並在 robots.txt 註明 sitemap 位置。
+ * 3. 檢查產出是否完整，缺東西就讓建置失敗，而不是默默部署一份壞的。
  */
-import { readFile, writeFile, access } from 'node:fs/promises'
+import { readFile, writeFile, access, readdir } from 'node:fs/promises'
+import { SITE_URL } from './site-url.mjs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -63,6 +65,51 @@ if (await exists(join(OUT, 'en', '404', 'index.html'))) {
   steps.push(await promote(join('en', '404'), join('en', '404.html')))
 }
 
+// ---------- sitemap.xml ----------
+/** 找出所有預先產生的頁面路徑（有 index.html 的資料夾），排除 404 */
+async function collectPaths(dir = OUT, prefix = '') {
+  const out = []
+  for (const ent of await readdir(dir, { withFileTypes: true })) {
+    if (!ent.isDirectory() || ent.name.startsWith('_')) continue
+    const sub = `${prefix}/${ent.name}`
+    if (await exists(join(dir, ent.name, 'index.html'))) out.push(sub)
+    out.push(...(await collectPaths(join(dir, ent.name), sub)))
+  }
+  return out
+}
+const all = ['/', ...(await collectPaths())].filter((p) => !/(^|\/)404$/.test(p))
+const zhPaths = all.filter((p) => p !== '/en' && !p.startsWith('/en/'))
+const enOf = (p) => (p === '/' ? '/en' : `/en${p}`)
+const url = (p) => SITE_URL + p
+const esc = (s) => s.replace(/&/g, '&amp;')
+const entry = (p, zhP) => {
+  const alts = all.includes(enOf(zhP))
+    ? `\n    <xhtml:link rel="alternate" hreflang="zh-Hant-TW" href="${esc(url(zhP))}"/>` +
+      `\n    <xhtml:link rel="alternate" hreflang="en" href="${esc(url(enOf(zhP)))}"/>` +
+      `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${esc(url(zhP))}"/>`
+    : ''
+  return `  <url>\n    <loc>${esc(url(p))}</loc>${alts}\n  </url>`
+}
+const urls = []
+for (const p of zhPaths) {
+  urls.push(entry(p, p))
+  if (all.includes(enOf(p))) urls.push(entry(enOf(p), p))
+}
+await writeFile(
+  join(OUT, 'sitemap.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
+    urls.join('\n') +
+    `\n</urlset>\n`,
+)
+steps.push(`sitemap.xml（${urls.length} 個網址，${SITE_URL}）`)
+
+const robotsPath = join(OUT, 'robots.txt')
+let robots = (await exists(robotsPath)) ? await readFile(robotsPath, 'utf8') : 'User-agent: *\nAllow: /\n'
+robots = robots.replace(/\n*Sitemap:.*$/gim, '').trimEnd() + `\n\nSitemap: ${SITE_URL}/sitemap.xml\n`
+await writeFile(robotsPath, robots)
+steps.push('robots.txt 加上 Sitemap 位置')
+
 // 基本完整性檢查：關鍵頁面都要在
 const required = [
   'index.html',
@@ -75,6 +122,8 @@ const required = [
   'accessibility/index.html',
   'favicon.svg',
   'favicon.ico',
+  'sitemap.xml',
+  'images/og-default.jpg',
 ]
 const missing = []
 for (const f of required) {

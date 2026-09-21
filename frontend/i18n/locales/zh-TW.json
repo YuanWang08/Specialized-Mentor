@@ -234,5 +234,8 @@
     "outstanding": "傑出導師分享",
     "noType": "找不到這個導師類別",
     "noMentor": "找不到這位導師"
+  },
+  "seo": {
+    "mentor": "{name}{rank}，{dept}，{year}傑出{type}。導師心語：{motto}"
   }
 }

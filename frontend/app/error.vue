@@ -1,9 +1,11 @@
 <script setup lang="ts">
 const props = defineProps<{ error: { statusCode: number; statusMessage?: string } }>()
 const { t } = useI18n()
-useHead({
+usePageSeo(() => ({
   title: props.error.statusCode === 404 ? t('error.notFound') : String(props.error.statusCode),
-})
+  description: t('error.lead'),
+  noindex: true,
+}))
 </script>
 
 <template>

@@ -8,7 +8,7 @@ const { t: tc, tAll } = useLocalized()
 const localePath = useLocalePath()
 
 const year = computed(() => tc(resultsYear))
-useHead(() => ({ title: t('results.title', { year: year.value }) }))
+usePageSeo(() => ({ title: t('results.title', { year: year.value }), description: t('results.lead') }))
 </script>
 
 <template>

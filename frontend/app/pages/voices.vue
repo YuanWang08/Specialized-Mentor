@@ -4,7 +4,7 @@ import { publishedTestimonials } from '~/data/testimonials'
 
 const { t } = useI18n()
 
-useHead({ title: t('voices.title') })
+usePageSeo(() => ({ title: t('voices.title'), description: t('voices.lead') }))
 
 const filter = ref<MentorTypeId | 'all'>('all')
 const shown = computed(() =>

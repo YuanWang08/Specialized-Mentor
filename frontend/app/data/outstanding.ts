@@ -277,7 +277,7 @@ export const outstanding: Outstanding[] = [
     },
     reflection: {
       zh: [
-        '希望各位同學加入中大這個大家庭不只在專業領域上有收穫，在待人處事上也能有所成長。學會用心對待身邊的人事物，關懷社會，思考自己獨特的價值，並且將在中大獲得的正向力量Pay it foward。',
+        '希望各位同學加入中大這個大家庭不只在專業領域上有收穫，在待人處事上也能有所成長。學會用心對待身邊的人事物，關懷社會，思考自己獨特的價值，並且將在中大獲得的正向力量 Pay it forward。',
       ],
       en: [
         'I hope that everyone who joins the NCU family gains not only in their field of study, but also grows in how they treat people and handle things: learning to give real care to the people and things around them, caring about society, reflecting on their own unique value — and paying forward the positive energy they gain at NCU.',

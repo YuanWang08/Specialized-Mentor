@@ -5,7 +5,7 @@ import { useLocalized, type L, type LP } from '~/data/i18n'
 const { t } = useI18n()
 const { t: tc, tAll } = useLocalized()
 
-useHead({ title: t('nav.accessibility') })
+usePageSeo(() => ({ title: t('nav.accessibility'), description: tc(lead) }))
 
 const lead: L = {
   zh: '本網站依無障礙網頁規範 AA 等級設計，致力讓所有使用者都能順利取得資訊。',
@@ -96,20 +96,6 @@ const measures: { title: L; body: L }[] = [
   },
 ]
 
-const limitsTitle: L = { zh: '已知限制', en: 'Known Limitations' }
-const limits: LP = {
-  zh: [
-    '部分單元的照片與文字內容仍在陸續補齊，網站上會以明確的文字說明目前狀態，不會以空白或無意義的佔位符呈現。',
-    '英文版的部分繪本書名為暫譯，正式名稱確認後將更新。',
-    '頁尾的聯絡資訊尚待主管單位正式確認。',
-  ],
-  en: [
-    'Photographs and text for some sections are still being collected. Where content is not yet available the site says so in words, rather than leaving a blank or a meaningless placeholder.',
-    'In the English version, some picture book titles are provisional translations, and will be updated once the official forms are confirmed.',
-    'The contact details in the footer are awaiting formal confirmation from the responsible office.',
-  ],
-}
-
 const contactTitle: L = { zh: '問題回報', en: 'Reporting a Problem' }
 const contactBody: L = {
   zh: '若您在使用本網站時遇到無障礙相關的困難，歡迎與我們聯繫，我們會儘速改善。',
@@ -144,11 +130,6 @@ const contactBody: L = {
             <dd>{{ tc(m.body) }}</dd>
           </template>
         </dl>
-
-        <h2 class="doc__h2">{{ tc(limitsTitle) }}</h2>
-        <ul class="limits">
-          <li v-for="(l, i) in tAll(limits)" :key="i">{{ l }}</li>
-        </ul>
 
         <h2 class="doc__h2">{{ tc(contactTitle) }}</h2>
         <p>{{ tc(contactBody) }}</p>

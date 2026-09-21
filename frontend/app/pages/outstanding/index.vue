@@ -9,7 +9,10 @@ const { t: tc } = useLocalized()
 const localePath = useLocalePath()
 
 const year = computed(() => tc(resultsYear))
-useHead(() => ({ title: t('outstanding.title', { year: year.value }) }))
+usePageSeo(() => ({
+  title: t('outstanding.title', { year: year.value }),
+  description: t('outstanding.lead', { n: outstanding.length }),
+}))
 
 const filter = ref<MentorTypeId | 'all'>('all')
 const shown = computed(() =>
@@ -42,6 +45,7 @@ const counts = computed(() => Object.fromEntries(mentorTypes.map((m) => [m.id, c
         <ul class="grid-4">
           <li v-for="m in shown" :key="m.id"><MentorCard :mentor="m" /></li>
         </ul>
+        <p class="ai-note">{{ t('home.photoAiNote') }}</p>
       </div>
     </section>
 
@@ -60,6 +64,8 @@ const counts = computed(() => Object.fromEntries(mentorTypes.map((m) => [m.id, c
 </template>
 
 <style scoped>
+/* 導師照片為 AI 生成：極小的字、靠右，不搶畫面 */
+.ai-note { margin: 10px 0 0; text-align: right; font-size: 11.5px; color: var(--ink-3); }
 .grid-4 { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
 .cta {

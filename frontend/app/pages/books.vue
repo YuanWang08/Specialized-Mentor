@@ -5,7 +5,7 @@ import { useLocalized } from '~/data/i18n'
 const { t } = useI18n()
 const { t: tc } = useLocalized()
 
-useHead({ title: t('books.title') })
+usePageSeo(() => ({ title: t('books.title'), description: t('books.lead'), image: '/images/books/2025.jpg' }))
 
 /**
  * 沒有線上書籍頁面的書（目前只有 2019《導路》），按鈕改開彈窗顯示書籍資訊。

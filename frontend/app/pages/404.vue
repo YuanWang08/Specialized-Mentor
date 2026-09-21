@@ -8,7 +8,7 @@
  * 所以把 404 做成一個真的會被預先產生的頁面，再由建置後處理複製成 404.html。
  */
 const { t } = useI18n()
-useHead({ title: t('error.notFound') })
+usePageSeo(() => ({ title: t('error.notFound'), description: t('error.lead'), noindex: true }))
 </script>
 
 <template>

@@ -159,10 +159,10 @@ cp node_modules/axe-core/axe.min.js public/_axe.js
 - [x] ~~**14 位導師的英文姓名拼法**~~ 2026-09-20 改用 114 學年度「傑出專項輔導導師」
       得獎名單上的官方拼法（如 `Gong Cihun-Siyong`、`Harn Po-Wei`、`Tsai Shyi-Jeng`），
       名單格式為「姓, 名」，站上不加逗號。`Salone Ishahavut` 為布農族名的既有羅馬拼寫。
-- [ ] **6 本繪本的英文書名** — `app/data/books.ts` 中標有 `titleEnUnofficial: true` 的都是暫譯，
+- [x] ~~**6 本繪本的英文書名**~~ 英文版於 2026-09-21 審稿通過，已移除所有 `titleEnUnofficial` 標記。（原註：
       需向中大出版中心確認。2025 年《片片絮語》的 `A Murmur of Light` 是書上既有的正式英文名。
-- [ ] **系所英文名稱** — 依中大官方英文系所名填寫，仍建議比對一次。
-- [ ] **站名英譯** — 目前為 `Specialized Mentoring Programs`（`i18n/locales/en.json` 的 `site.name`）。
+- [x] ~~**系所英文名稱**~~ 隨英文版審稿確認。
+- [x] ~~**站名英譯**~~ `NCU Specialized Mentoring Programs`，隨英文版審稿確認。
 
 `/accessibility` 的「已知限制」已載明姓名與書名為暫譯，正式名稱確認後請一併移除該條。
 
@@ -316,7 +316,7 @@ npx serve .output/public        # 或任何靜態伺服器
       建議 1600 × 1200 以上。
 - [x] ~~**宿舍組活動花絮 10 張**~~ 已上架（原始檔放在雲端資料的 `活動花絮照片(各類導師各10張)/宿舍/`）。
       服務學習「科學教案執行 (大溪區百吉國小)」因解析度不足已下架，原始檔移到雲端資料的 `_網站未使用/`。
-- [ ] **系學會活動花絮 7 張**（目前 3 張）
+- [x] ~~**系學會活動花絮**~~ 確定只有 3 張（2026-09-21），不再補齊，專頁的「尚待補齊」提示已移除。
 - [x] ~~**傑出導師照片 14 位**~~ 已於 2026-09-18 全部換成 AI 生成版本（900×900 JPG）。
       AI 原檔 PNG 在雲端資料的 `114學年度傑出專項導師照片/AI生成版本/`，
       舊的實拍照備份在 `_網站未使用/導師照片_舊版（實拍）/`。
@@ -333,7 +333,7 @@ npx serve .output/public        # 或任何靜態伺服器
 
 **雙語化**（英文版已完成，以下為待確認的正式名稱）
 
-- [ ] 6 本繪本的英文書名（見上方「雙語化」一節）。導師英文姓名已依得獎名單確認。
+- [x] ~~英文版審稿~~ 2026-09-21 通過；導師英文姓名依得獎名單。
 
 **待確認（已填入但未經正式核可）**
 
@@ -342,7 +342,7 @@ npx serve .output/public        # 或任何靜態伺服器
 - [ ] **職涯亮點 1,988 人次**：首頁／導師列表的職涯數字，由新版成果的講座 1,771＋參訪 147＋測評 70 加總
       （與舊版 1,473 的算法相同，不含職涯諮詢 175 人次）。
 
-- [ ] **頁尾聯絡資訊**：主管單位（學務處諮商中心）、郵遞區號 320017、電話分機 57261、
+- [x] ~~**頁尾聯絡資訊**~~ 2026-09-21 已確認（`site.ts` 的 `contact.unconfirmed` 已改為 false）。原註：主管單位（學務處諮商中心）、郵遞區號 320017、電話分機 57261、
       隱私權政策網址 `https://www.cc.ncu.edu.tw/p/412-1033-159.php`。
       使用者於 2026-09-07 提供時的說法是「據我所知可能可以用」，尚未經徐姐或諮商中心確認。
       確認後把 `site.ts` 的 `contact.unconfirmed` 改成 `false`（畫面上的「待單位確認」提示會消失），
@@ -366,3 +366,18 @@ npx serve .output/public        # 或任何靜態伺服器
   `frontend/.nuxt/tsconfig.*.json`。把 `frontend` 直接開成工作區根目錄即可，`npm run build` 不受影響。
 - 中文字型使用 Google Fonts 的 Noto Sans TC / Noto Serif TC。若部署環境擋外部連線，
   請改為自帶字型檔並修改 `nuxt.config.ts` 的 `app.head.link`。
+
+## SEO
+
+- **每頁摘要與分享預覽**：`app/composables/usePageSeo.ts`。每一頁都呼叫 `usePageSeo()`，
+  產生 `description`、Open Graph（LINE／Facebook 分享卡片）與 Twitter card。
+  摘要多半直接用頁首導言；傑出導師個人頁由姓名、職稱、系所與導師心語組成（i18n 的 `seo.mentor`）。
+- **分享預覽圖**：預設 `public/images/og-default.jpg`（1200×630，由首頁主視覺裁切）；
+  導師個人頁用該導師照片，繪本頁用 2025 繪本封面。
+- **正式網址**：`scripts/site-url.mjs` 的 `SITE_URL`（目前為 `https://specialized-mentor.pages.dev`），
+  也可用環境變數 `NUXT_PUBLIC_SITE_URL` 覆蓋。canonical、hreflang、og:url、sitemap.xml 都用它組絕對網址。
+  **換成學校網域時只要改這一處**，重新建置即可。
+- **sitemap.xml／robots.txt**：由 `scripts/finalize-static.mjs` 在建置後產生（含中英文對應），
+  robots.txt 會自動加上 `Sitemap:` 一行。
+- 404 與錯誤頁設為 `noindex`。
+- 上線後到 Google Search Console 驗證網域並提交 `sitemap.xml`（需學校網域管理權限，可能要請計網中心協助）。

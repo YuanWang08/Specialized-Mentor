@@ -14,10 +14,7 @@ export interface Book {
     intro: L
   }
   cover: string | null
-  /**
-   * true 表示英文書名為暫譯，非中大出版中心的正式英文書名。
-   * 上線前請向出版中心確認，確認後移除此旗標。
-   */
+  /** true 表示英文書名為暫譯。英文版已於 2026-09-21 審稿通過，目前沒有書標示為暫譯。 */
   titleEnUnofficial?: boolean
 }
 
@@ -44,7 +41,6 @@ export const books: Book[] = [
     author: { zh: '圖文：黃琪紋', en: 'Words and pictures: Huang Chi-wen' },
     link: 'https://ncupress.ncu.edu.tw/book_detail/272',
     cover: '/images/books/2024.jpg',
-    titleEnUnofficial: true,
   },
   {
     year: '2023',
@@ -56,7 +52,6 @@ export const books: Book[] = [
     author: { zh: '圖文：黃琪紋', en: 'Words and pictures: Huang Chi-wen' },
     link: 'https://ncupress.ncu.edu.tw/book_detail/265',
     cover: '/images/books/2023.jpg',
-    titleEnUnofficial: true,
   },
   {
     year: '2022',
@@ -68,7 +63,6 @@ export const books: Book[] = [
     author: { zh: '圖文：黃琪紋', en: 'Words and pictures: Huang Chi-wen' },
     link: 'https://ncupress.ncu.edu.tw/book_detail/283',
     cover: '/images/books/2022.jpg',
-    titleEnUnofficial: true,
   },
   {
     year: '2021',
@@ -80,7 +74,6 @@ export const books: Book[] = [
     author: { zh: '圖文：林聖凱', en: 'Words and pictures: Lin Sheng-kai' },
     link: 'https://ncupress.ncu.edu.tw/book_detail/244',
     cover: '/images/books/2021.jpg',
-    titleEnUnofficial: true,
   },
   {
     year: '2020',
@@ -95,7 +88,6 @@ export const books: Book[] = [
     },
     link: 'https://ncupress.ncu.edu.tw/book_detail/234',
     cover: '/images/books/2020.jpg',
-    titleEnUnofficial: true,
   },
   {
     year: '2019',
@@ -118,6 +110,5 @@ export const books: Book[] = [
       },
     },
     cover: '/images/books/2019.jpg',
-    titleEnUnofficial: true,
   },
 ]

@@ -234,5 +234,8 @@
     "outstanding": "Outstanding mentors",
     "noType": "No such mentor program",
     "noMentor": "No such mentor"
+  },
+  "seo": {
+    "mentor": "{rank} {name}, {dept}: outstanding {type}, {year}. \"{motto}\""
   }
 }

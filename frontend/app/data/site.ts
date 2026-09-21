@@ -48,15 +48,14 @@ export const nav: NavItem[] = [
 /**
  * 頁尾聯絡資訊。
  *
- * 內容由使用者於 2026-09-07 提供，但當時的說法是「據我所知可能可以用」，
- * 尚未經徐姐或諮商中心正式確認。上線前請核對：主管單位、郵遞區號、分機、隱私權政策網址。
+ * 內容於 2026-09-21 經單位正式確認。
  */
 export const contact = {
   /**
    * 內容是否已經正式確認。畫面上不再顯示提示（依使用者要求移除），
    * 這個旗標留作團隊的待辦註記：向諮商中心確認過就改成 false。
    */
-  unconfirmed: true,
+  unconfirmed: false,
   unit: {
     zh: '學務處諮商中心',
     en: 'Counseling Center, Office of Student Affairs',

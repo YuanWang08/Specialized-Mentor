@@ -6,7 +6,7 @@ const { t } = useI18n()
 const { t: tc, tAll } = useLocalized()
 const localePath = useLocalePath()
 
-useHead({ title: t('nav.about') })
+usePageSeo(() => ({ title: t('nav.about'), description: t('about.lead') }))
 
 const heading = {
   zh: '設置專項輔導導師，培育學生軟實力',

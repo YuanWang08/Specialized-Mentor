@@ -19,7 +19,7 @@ if (!type.value) {
 }
 
 const name = computed(() => tc(type.value.name))
-useHead(() => ({ title: name.value }))
+usePageSeo(() => ({ title: name.value, description: tc(type.value.intro) }))
 
 const mentors = computed(() => outstandingByType(id.value))
 const quotes = computed(() => publishedTestimonials.filter((q) => q.type === id.value))
@@ -108,6 +108,7 @@ const idx = computed(() => {
         <ul class="grid-4">
           <li v-for="m in mentors" :key="m.id"><MentorCard :mentor="m" /></li>
         </ul>
+        <p class="ai-note">{{ t('home.photoAiNote') }}</p>
       </div>
     </section>
 
@@ -137,9 +138,6 @@ const idx = computed(() => {
         <p v-else class="ph--inline">
           {{ t('mentors.noPhotos', { name, n: galleryTarget }) }}
         </p>
-        <p v-if="pics.length && pics.length < galleryTarget" class="ph--inline note">
-          {{ t('mentors.partialPhotos', { n: pics.length, target: galleryTarget }) }}
-        </p>
       </div>
     </section>
 
@@ -156,6 +154,8 @@ const idx = computed(() => {
 </template>
 
 <style scoped>
+/* 導師照片為 AI 生成：極小的字、靠右，不搶畫面 */
+.ai-note { margin: 10px 0 0; text-align: right; font-size: 11.5px; color: var(--ink-3); }
 .about-sec { scroll-margin-top: 76px; }
 .lead { margin: 14px 0 0; font-size: 15.5px; line-height: 2; color: var(--ink-2); }
 

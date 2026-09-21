@@ -4,7 +4,7 @@ import { photos, photosByType } from '~/data/gallery'
 
 const { t } = useI18n()
 
-useHead({ title: t('gallery.title') })
+usePageSeo(() => ({ title: t('gallery.title'), description: t('gallery.lead') }))
 
 const filter = ref<MentorTypeId | 'all'>('all')
 const shown = computed(() => (filter.value === 'all' ? photos : photosByType(filter.value)))

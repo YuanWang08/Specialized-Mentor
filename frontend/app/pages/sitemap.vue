@@ -9,7 +9,7 @@ const { t } = useI18n()
 const { t: tc } = useLocalized()
 const localePath = useLocalePath()
 
-useHead({ title: t('sitemap.title') })
+usePageSeo(() => ({ title: t('sitemap.title'), description: t('sitemap.lead') }))
 
 const year = computed(() => tc(resultsYear))
 

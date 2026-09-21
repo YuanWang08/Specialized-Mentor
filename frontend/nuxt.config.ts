@@ -1,4 +1,5 @@
 import { mentorTypes } from './app/data/mentorTypes'
+import { SITE_URL } from './scripts/site-url.mjs'
 import { outstanding } from './app/data/outstanding'
 
 /**
@@ -27,7 +28,12 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   modules: ['@nuxtjs/i18n'],
 
+  // 正式網址：分享預覽、canonical、sitemap.xml 都用它組出絕對網址（見 scripts/site-url.mjs）
+  runtimeConfig: { public: { siteUrl: SITE_URL } },
+
   i18n: {
+    // 讓 canonical 與 hreflang 輸出絕對網址
+    baseUrl: SITE_URL,
     defaultLocale: 'zh-TW',
     // 中文不加前綴（/about），英文加（/en/about）
     strategy: 'prefix_except_default',

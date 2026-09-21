@@ -21,7 +21,18 @@ const name = computed(() => tc(mentor.value!.name))
 const rank = computed(() => tc(mentor.value!.rank))
 const year = computed(() => tc(resultsYear))
 
-useHead(() => ({ title: `${name.value}${t('common.sep')}${rank.value}` }))
+usePageSeo(() => ({
+  title: `${name.value}${t('common.sep')}${rank.value}`,
+  description: t('seo.mentor', {
+    name: name.value,
+    rank: rank.value,
+    dept: tc(mentor.value!.dept),
+    type: tc(type.value.name),
+    year: year.value,
+    motto: tc(mentor.value!.motto),
+  }),
+  image: mentor.value!.photo,
+}))
 
 /** 服務學習組的花絮照片有分老師資料夾，可對應到本人 */
 const ownPhotos = computed(() =>
@@ -56,6 +67,7 @@ const next = computed(() => outstanding[(idx.value + 1) % outstanding.length])
       <div class="wrap top__inner">
         <div class="top__photo">
           <img v-if="mentor.photo" :src="mentor.photo" :alt="`${name}${t('common.sep')}${rank}`" />
+          <p v-if="mentor.photo" class="ai-note">{{ t('home.photoAiNote') }}</p>
           <PlaceholderBox
             v-else
             ratio="4 / 5"
@@ -137,6 +149,8 @@ const next = computed(() => outstanding[(idx.value + 1) % outstanding.length])
 </template>
 
 <style scoped>
+/* 導師照片為 AI 生成：極小的字、靠右，不搶畫面 */
+.ai-note { margin: 6px 0 0; text-align: right; font-size: 11.5px; color: var(--ink-3); }
 .crumb { background: var(--cream-2); border-bottom: 1px solid var(--line); }
 .crumb .wrap {
   display: flex;

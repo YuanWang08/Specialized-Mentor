@@ -8,7 +8,7 @@ const { t } = useI18n()
 const { t: tc } = useLocalized()
 const localePath = useLocalePath()
 
-useHead({ title: t('mentors.title') })
+usePageSeo(() => ({ title: t('mentors.title'), description: t('mentors.lead') }))
 
 const countMentors = (id: string) => outstanding.filter((m) => m.type === id).length
 const countPhotos = (id: string) => photos.filter((p) => p.type === id).length

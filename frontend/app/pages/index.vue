@@ -13,7 +13,7 @@ const { t: tc } = useLocalized()
 const localePath = useLocalePath()
 
 // 首頁標題直接用站名，不套 titleTemplate
-useHead({ title: null, titleTemplate: () => t('site.name') })
+usePageSeo(() => ({ title: null, description: tc(site.heroLead) }))
 
 const featuredMentors = computed(() => outstanding.filter((m) => m.photo).slice(0, 8))
 /**
